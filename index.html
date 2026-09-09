@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PracTice — AI Educational Services · Institut Mines-Télécom Business School</title>
+<meta name="description" content="PracTice développe des outils pédagogiques augmentés par l'IA au service des enseignants et étudiants d'IMT Business School.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bleu-imt:    #00B8DE;
+  --violet-imt:  #AD1D89;
+  --noir:        #000000;
+  --blanc:       #FFFFFF;
+  --gris-clair:  #F4F6F8;
+  --gris-texte:  #5A6270;
+  --border:      rgba(0,0,0,0.09);
+  --bleu-light:  rgba(0,184,222,0.08);
+  --violet-light:rgba(173,29,137,0.08);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--blanc); color: var(--noir); overflow-x: hidden; }
+
+/* HEADER */
+header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.header-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 68px; display: flex; align-items: center; justify-content: space-between; }
+.logo-block { display: flex; align-items: center; gap: 1rem; }
+.logo-sep { width: 1px; height: 28px; background: var(--border); }
+.logo-service { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; font-weight: 600; color: var(--violet-imt); letter-spacing: -0.01em; }
+.logo-service span { display: block; font-size: 0.65rem; font-weight: 400; color: var(--gris-texte); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 1px; }
+nav { display: flex; align-items: center; gap: 2rem; }
+nav a { font-size: 0.85rem; font-weight: 400; color: var(--gris-texte); text-decoration: none; transition: color 0.2s; }
+nav a:hover { color: var(--bleu-imt); }
+.nav-cta { background: var(--bleu-imt); color: var(--blanc) !important; padding: 0.5rem 1.2rem; border-radius: 6px; font-weight: 500 !important; }
+.nav-cta:hover { background: #0099ba !important; }
+
+/* LANG TOGGLE */
+.lang-toggle { display: flex; align-items: center; gap: 0; background: var(--gris-clair); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.lang-toggle button { background: none; border: none; cursor: pointer; font-size: 0.78rem; font-weight: 600; padding: 0.35rem 0.7rem; color: var(--gris-texte); font-family: 'DM Sans', sans-serif; transition: background 0.15s, color 0.15s; letter-spacing: 0.04em; }
+.lang-toggle button.active { background: var(--bleu-imt); color: var(--blanc); }
+.lang-toggle button:not(.active):hover { background: var(--border); }
+
+/* HERO */
+.hero { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem 4rem; display: grid; grid-template-columns: 1fr 400px; gap: 4rem; align-items: center; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bleu-imt); margin-bottom: 1.5rem; padding: 0.35rem 0.8rem; background: var(--bleu-light); border-radius: 100px; border: 1px solid rgba(0,184,222,0.2); }
+.hero-eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--bleu-imt); border-radius: 50%; }
+.hero h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+.accent-blue { color: var(--bleu-imt); }
+.accent-violet { color: var(--violet-imt); }
+.hero-desc { font-size: 1.05rem; line-height: 1.75; color: var(--gris-texte); max-width: 48ch; margin-bottom: 2.5rem; }
+.hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--bleu-imt); color: var(--blanc); padding: 0.8rem 1.8rem; border-radius: 8px; font-size: 0.95rem; font-weight: 500; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+.btn-primary:hover { background: #0099ba; transform: translateY(-1px); }
+.btn-secondary { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--violet-imt); padding: 0.8rem 0; font-size: 0.9rem; font-weight: 500; text-decoration: none; }
+
+/* Carte hero */
+.hero-card { background: var(--gris-clair); border: 1px solid var(--border); border-radius: 20px; padding: 1.8rem; position: relative; overflow: hidden; }
+.hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--bleu-imt), var(--violet-imt)); }
+.hero-card-title { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gris-texte); margin-bottom: 1.2rem; }
+.stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1rem; }
+.stat-item { background: var(--blanc); border-radius: 12px; padding: 1rem; border: 1px solid var(--border); }
+.stat-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 700; letter-spacing: -0.04em; color: var(--bleu-imt); line-height: 1; margin-bottom: 0.3rem; }
+.stat-num.violet { color: var(--violet-imt); }
+.stat-label { font-size: 0.7rem; color: var(--gris-texte); }
+.hero-pill { display: flex; align-items: center; gap: 0.5rem; background: var(--blanc); border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem 0.9rem; font-size: 0.78rem; color: var(--noir); margin-top: 0.5rem; }
+.pill-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.dot-blue { background: var(--bleu-imt); }
+.dot-violet { background: var(--violet-imt); }
+
+/* OUTILS */
+.section-outils { background: var(--gris-clair); padding: 4rem 0; }
+.section-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+.section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bleu-imt); margin-bottom: 0.4rem; }
+.section-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
+.section-count { font-size: 0.8rem; color: var(--gris-texte); }
+.tools-grid { display: flex; flex-direction: column; gap: 2rem; }
+.tool-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: stretch; }
+.tool-video { background: var(--blanc); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height: 280px; }
+.tool-video iframe { width: 100%; height: 100%; min-height: 280px; border: 0; border-radius: 16px; }
+.tool-video-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.8rem; color: var(--gris-texte); font-size: 0.85rem; width: 100%; }
+.tool-video-placeholder svg { opacity: 0.3; }
+.tool-video-placeholder span { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; opacity: 0.5; }
+.tool-card { background: var(--blanc); border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 1rem; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; position: relative; overflow: hidden; }
+.tool-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--bleu-imt); opacity: 0; transition: opacity 0.2s; }
+.tool-card.violet::after { background: var(--violet-imt); }
+.tool-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.09); border-color: var(--bleu-imt); }
+.tool-card.violet:hover { border-color: var(--violet-imt); }
+.tool-card:hover::after { opacity: 1; }
+.tool-top { display: flex; align-items: flex-start; justify-content: space-between; }
+.tool-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+.icon-blue { background: var(--bleu-light); }
+.icon-violet { background: var(--violet-light); }
+.badge { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.25rem 0.65rem; border-radius: 100px; }
+.badge-live { background: #e6f7fb; color: #006d86; border: 1px solid rgba(0,184,222,0.3); }
+.badge-beta { background: rgba(173,29,137,0.08); color: #7a0f61; border: 1px solid rgba(173,29,137,0.2); }
+.badge-access { background: #fff3e0; color: #b45309; border: 1px solid rgba(180,83,9,0.3); }
+.badge-free { background: #e8f5e9; color: #2e7d32; border: 1px solid rgba(46,125,50,0.3); }
+.btn-request { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--bleu-imt); color: var(--blanc); padding: 0.45rem 1rem; border-radius: 6px; font-size: 0.78rem; font-weight: 500; text-decoration: none; transition: background 0.2s; }
+.btn-request:hover { background: #0099ba; }
+.tool-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; }
+.tool-tagline { font-size: 0.78rem; font-weight: 500; color: var(--bleu-imt); margin-top: 0.1rem; }
+.tool-card.violet .tool-tagline { color: var(--violet-imt); }
+.tool-desc { font-size: 0.875rem; line-height: 1.7; color: var(--gris-texte); flex: 1; }
+.tool-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: auto; }
+.tool-link { font-size: 0.8rem; font-weight: 500; color: var(--bleu-imt); display: flex; align-items: center; gap: 0.3rem; }
+.tool-card.violet .tool-link { color: var(--violet-imt); }
+.tool-tech { font-size: 0.68rem; color: var(--gris-texte); background: var(--gris-clair); padding: 0.2rem 0.5rem; border-radius: 4px; }
+
+/* ABOUT */
+.section-about { padding: 5rem 0; }
+.about-grid { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.about-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--violet-imt); margin-bottom: 0.8rem; }
+.about-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.7rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 1.2rem; }
+.about-text { font-size: 0.95rem; line-height: 1.8; color: var(--gris-texte); margin-bottom: 1rem; }
+.about-values { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+.value-chip { font-size: 0.78rem; font-weight: 500; padding: 0.35rem 0.9rem; border-radius: 100px; border: 1px solid var(--border); }
+.about-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+/* CONTACT */
+.section-contact { background: var(--noir); color: var(--blanc); padding: 4rem 0; }
+.contact-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+.contact-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+.contact-sub { font-size: 0.9rem; opacity: 0.6; }
+.contact-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+.btn-contact { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--bleu-imt); color: var(--blanc); padding: 0.75rem 1.5rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: background 0.2s; }
+.btn-contact:hover { background: #0099ba; }
+.btn-ghost { color: rgba(255,255,255,0.6); font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
+.btn-ghost:hover { color: var(--blanc); }
+
+/* FOOTER */
+footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; border-top: 1px solid rgba(255,255,255,0.06); }
+.footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.footer-left { font-size: 0.78rem; line-height: 1.8; }
+.footer-left strong { color: rgba(255,255,255,0.75); font-weight: 500; }
+.footer-left a { color: rgba(255,255,255,0.4); text-decoration: none; }
+.footer-left a:hover { color: rgba(255,255,255,0.7); }
+.footer-right { font-size: 0.72rem; text-align: right; }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.animate { opacity: 0; }
+.animate.visible { animation: fadeUp 0.6s ease forwards; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .tool-row { grid-template-columns: 1fr; }
+  .tool-video { min-height: 220px; }
+  .tool-video iframe { min-height: 220px; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-card { display: none; }
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .about-visual { display: none; }
+  nav a:not(.lang-toggle) { display: none; }
+  .lang-toggle { display: flex !important; }
+}
+@media (max-width: 600px) {
+  .hero { padding: 3rem 1rem 2rem; }
+  .section-inner, .contact-inner, .footer-inner { padding: 0 1rem; }
+  .header-inner { padding: 0 1rem; }
+  .contact-inner { flex-direction: column; align-items: flex-start; }
+  .footer-inner { flex-direction: column; }
+  .footer-right { text-align: left; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-block">
+      <img src="Logo IMT-BS RF RVB.png" alt="IMT Business School" height="36" style="width:auto;">
+      <div class="logo-sep"></div>
+      <div class="logo-service">
+        PracTice
+        <span data-fr="Ingénierie pédagogique" data-en="Educational Engineering">Ingénierie pédagogique</span>
+      </div>
+    </div>
+    <nav>
+      <a href="#outils" data-fr="Nos outils" data-en="Our tools">Nos outils</a>
+      <a href="#about" data-fr="À propos" data-en="About">À propos</a>
+      <div class="lang-toggle">
+        <button id="btn-fr" class="active" onclick="setLang('fr')">FR</button>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section>
+  <div class="hero">
+    <div class="animate">
+      <div class="hero-eyebrow">Service PracTice · IMT-BS</div>
+      <h1>PracTice Store<br><span style="font-size:0.7em;font-weight:400;opacity:0.8;" data-fr="Des outils IA pour" data-en="AI tools to">Des outils IA pour</span> <span class="accent-blue" data-fr="enseigner" data-en="teach">enseigner</span><br><span class="accent-violet" data-fr="autrement" data-en="differently">autrement</span></h1>
+      <p class="hero-desc" data-fr="PracTice développe des services pédagogiques augmentés par l'intelligence artificielle, conçus pour les enseignants et étudiants d'Institut Mines-Télécom Business School." data-en="PracTice develops AI-powered educational services designed for faculty and students at Institut Mines-Télécom Business School.">
+        PracTice développe des services pédagogiques augmentés par l'intelligence artificielle, conçus pour les enseignants et étudiants d'Institut Mines-Télécom Business School.
+      </p>
+      <div class="hero-actions">
+        <a href="#outils" class="btn-primary">
+          <span data-fr="Découvrir les outils" data-en="Discover our tools">Découvrir les outils</span>
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="mailto:practice@imt-bs.eu" class="btn-secondary">
+          <span data-fr="Nous contacter →" data-en="Contact us →">Nous contacter →</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-card animate delay-2">
+      <div class="hero-card-title" data-fr="Écosystème PracTice 2025–2026" data-en="PracTice Ecosystem 2025–2026">Écosystème PracTice 2025–2026</div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-num">5</div>
+          <div class="stat-label" data-fr="Outils disponibles" data-en="Available tools">Outils disponibles</div>
+        </div>
+      </div>
+      <div class="hero-pill"><span class="pill-dot dot-blue"></span><span data-fr="SmartReviz · Révision IA pour Moodle" data-en="SmartReviz · AI revision for Moodle">SmartReviz · Révision IA pour Moodle</span></div>
+      <div class="hero-pill"><span class="pill-dot dot-violet"></span><span data-fr="Syllabo · Générateur de syllabus" data-en="Syllabo · Syllabus generator">Syllabo · Générateur de syllabus</span></div>
+      <div class="hero-pill"><span class="pill-dot dot-blue"></span><span data-fr="Ateliers de réflexion · Questions à partir d'un document" data-en="Reflection workshops · Questions from a document">Ateliers de réflexion · Questions à partir d'un document</span></div>
+      <div class="hero-pill"><span class="pill-dot dot-violet"></span><span data-fr="Contrat pédagogique IA · Cadre d'usage signable" data-en="AI learning contract · Signable usage framework">Contrat pédagogique IA · Cadre d'usage signable</span></div>
+      <div class="hero-pill"><span class="pill-dot dot-blue"></span><span data-fr="Bingo Sujets IMT-BS · Entraînement aux oraux" data-en="Bingo Sujets IMT-BS · Oral exam training">Bingo Sujets IMT-BS · Entraînement aux oraux</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-outils" id="outils">
+  <div class="section-inner">
+    <div class="section-header animate">
+      <div>
+        <div class="section-label" data-fr="Catalogue" data-en="Catalogue">Catalogue</div>
+        <div class="section-title" data-fr="Nos services IA en ligne" data-en="Our online AI services">Nos services IA en ligne</div>
+      </div>
+      <div class="section-count" data-fr="5 outils · Accès libre" data-en="5 tools · Free access">5 outils · Accès libre</div>
+    </div>
+
+    <div class="tools-grid">
+
+      <div class="tool-row animate delay-1">
+        <a class="tool-card" href="https://julienmorice.github.io/smartreviz/" target="_blank" rel="noopener" style="margin:0;">
+          <div class="tool-top">
+            <div class="tool-icon icon-blue">🧠</div>
+            <span class="badge badge-live" data-fr="En ligne" data-en="Online">En ligne</span>
+          </div>
+          <div>
+            <div class="tool-name">SmartReviz</div>
+            <div class="tool-tagline" data-fr="Révision intelligente pour Moodle" data-en="Smart revision for Moodle">Révision intelligente pour Moodle</div>
+          </div>
+          <p class="tool-desc" data-fr="Génère automatiquement des modules de révision à partir de vos contenus de cours : QCM, flashcards et synthèses via l'API Claude, prêts à intégrer dans Moodle." data-en="Automatically generates revision modules from your course content: MCQs, flashcards and summaries via the Claude API, ready to integrate into Moodle.">Génère automatiquement des modules de révision à partir de vos contenus de cours : QCM, flashcards et synthèses via l'API Claude, prêts à intégrer dans Moodle.</p>
+          <div class="tool-footer">
+            <span class="tool-link" data-fr="Accéder librement" data-en="Access freely">Accéder librement <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+            <span class="badge badge-free" style="font-size:0.62rem;" data-fr="Accès libre" data-en="Free access">Accès libre</span>
+          </div>
+        </a>
+        <div class="tool-video">
+          <iframe title="Démo SmartReviz" src="https://mediaserver.ip-paris.fr/permalink/v126d39c879d4ddyw9y6/iframe/" allowfullscreen="allowfullscreen" allow="autoplay"></iframe>
+        </div>
+      </div>
+
+      <div class="tool-row animate delay-2">
+        <a class="tool-card violet" href="https://syllabo-votre-assistant-syllabus-de-practice-imt-437066220015.us-west1.run.app/" target="_blank" rel="noopener" style="margin:0;">
+          <div class="tool-top">
+            <div class="tool-icon icon-violet">📝</div>
+            <span class="badge badge-live" data-fr="En ligne" data-en="Online">En ligne</span>
+          </div>
+          <div>
+            <div class="tool-name">Syllabo</div>
+            <div class="tool-tagline" data-fr="Assistant syllabus pédagogique" data-en="Educational syllabus assistant">Assistant syllabus pédagogique</div>
+          </div>
+          <p class="tool-desc" data-fr="Structurez vos cours en quelques minutes. Syllabo guide l'enseignant dans la création d'un syllabus conforme aux standards IMT-BS, avec objectifs, compétences et évaluation." data-en="Structure your courses in minutes. Syllabo guides instructors in creating a syllabus aligned with IMT-BS standards, covering objectives, competencies and assessment.">Structurez vos cours en quelques minutes. Syllabo guide l'enseignant dans la création d'un syllabus conforme aux standards IMT-BS, avec objectifs, compétences et évaluation.</p>
+          <div class="tool-footer">
+            <span class="tool-link" data-fr="Accéder librement" data-en="Access freely">Accéder librement <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+            <span class="badge badge-free" style="font-size:0.62rem;" data-fr="Accès libre" data-en="Free access">Accès libre</span>
+          </div>
+        </a>
+        <div class="tool-video">
+          <iframe title="Démo Syllabo" src="https://mediaserver.ip-paris.fr/permalink/v126d3e12561ay6a6x3n/iframe/" allowfullscreen="allowfullscreen" allow="autoplay"></iframe>
+        </div>
+      </div>
+
+      <div class="tool-row animate delay-3">
+        <a class="tool-card" href="https://practice-imtbs.github.io/ateliers-de-reflexion/" target="_blank" rel="noopener" style="margin:0;">
+          <div class="tool-top">
+            <div class="tool-icon icon-blue">💡</div>
+            <span class="badge badge-live" data-fr="En ligne" data-en="Online">En ligne</span>
+          </div>
+          <div>
+            <div class="tool-name">Ateliers de réflexion</div>
+            <div class="tool-tagline" data-fr="Questions de réflexion à partir d'un document" data-en="Reflection questions from a document">Questions de réflexion à partir d'un document</div>
+          </div>
+          <p class="tool-desc" data-fr="Génère des questions de réflexion de haut niveau taxonomique à partir d'un PDF ou d'un texte : problématisation, mise en perspective, esprit critique. Aucune clé à saisir, aucun réglage." data-en="Generates high-order reflection questions from a PDF or a text: problematisation, perspective-taking, critical thinking. No key to enter, no settings.">Génère des questions de réflexion de haut niveau taxonomique à partir d'un PDF ou d'un texte : problématisation, mise en perspective, esprit critique. Aucune clé à saisir, aucun réglage.</p>
+          <div class="tool-footer">
+            <span class="tool-link" data-fr="Accéder librement" data-en="Access freely">Accéder librement <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+            <span class="badge badge-free" style="font-size:0.62rem;" data-fr="Accès libre" data-en="Free access">Accès libre</span>
+          </div>
+        </a>
+        <div class="tool-video">
+          <div class="tool-video-placeholder">
+            <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span data-fr="Démo vidéo à venir" data-en="Demo video coming soon">Démo vidéo à venir</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-row animate delay-4">
+        <a class="tool-card violet" href="https://practice-imtbs.github.io/contratpedagogique-iagenerative/" target="_blank" rel="noopener" style="margin:0;">
+          <div class="tool-top">
+            <div class="tool-icon icon-violet">📄</div>
+            <span class="badge badge-live" data-fr="En ligne" data-en="Online">En ligne</span>
+          </div>
+          <div>
+            <div class="tool-name">Contrat pédagogique IA</div>
+            <div class="tool-tagline" data-fr="Cadrer l'usage de l'IA dans les mémoires" data-en="Framing AI use in student dissertations">Cadrer l'usage de l'IA dans les mémoires</div>
+          </div>
+          <p class="tool-desc" data-fr="L'enseignant classe les usages de l'IA générative (autorisés, encadrés, interdits), fixe les engagements d'intégrité des données empiriques, puis génère un contrat pédagogique PDF prêt à signer par l'étudiant." data-en="The teacher classifies generative-AI uses (allowed, restricted, prohibited), sets empirical-data integrity commitments, then generates a ready-to-sign PDF learning contract for the student.">L'enseignant classe les usages de l'IA générative (autorisés, encadrés, interdits), fixe les engagements d'intégrité des données empiriques, puis génère un contrat pédagogique PDF prêt à signer par l'étudiant.</p>
+          <div class="tool-footer">
+            <span class="tool-link" data-fr="Accéder librement" data-en="Access freely">Accéder librement <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+            <span class="badge badge-free" style="font-size:0.62rem;" data-fr="Accès libre" data-en="Free access">Accès libre</span>
+          </div>
+        </a>
+        <div class="tool-video">
+          <div class="tool-video-placeholder">
+            <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span data-fr="Démo vidéo à venir" data-en="Demo video coming soon">Démo vidéo à venir</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-row animate">
+        <a class="tool-card" href="https://julienmorice.github.io/BingoSujetImtBsTraining/" target="_blank">
+          <div class="tool-header">
+            <span class="tool-icon">🎰</span>
+            <div class="tool-badges">
+              <span class="badge badge-live" data-fr="En ligne" data-en="Online">En ligne</span>
+            </div>
+          </div>
+          <div>
+            <div class="tool-name">Bingo Sujets IMT-BS</div>
+            <div class="tool-tagline" data-fr="Entraînement · Oraux d'admission" data-en="Training · Admission oral exams">Entraînement · Oraux d'admission</div>
+          </div>
+          <p class="tool-desc" data-fr="Permet d'accéder à la version d'entraînement de l'application Bingo Sujet IMT-BS utilisée dans le cadre des oraux d'admissions. Elle prépare les candidats pour mieux anticiper et se préparer." data-en="Access the training version of the Bingo Sujet IMT-BS application used in admission oral exams. It helps candidates better anticipate and prepare themselves.">Permet d'accéder à la version d'entraînement de l'application Bingo Sujet IMT-BS utilisée dans le cadre des oraux d'admissions. Elle prépare les candidats pour mieux anticiper et se préparer.</p>
+          <div class="tool-footer">
+            <span class="tool-link" data-fr="Accéder librement" data-en="Access freely">Accéder librement <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+            <span class="badge badge-free" style="font-size:0.62rem;" data-fr="Accès libre" data-en="Free access">Accès libre</span>
+          </div>
+        </a>
+        <div class="tool-video">
+          <div class="tool-video-placeholder">
+            <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span data-fr="Démo vidéo à venir" data-en="Demo video coming soon">Démo vidéo à venir</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section-about" id="about">
+  <div class="about-grid">
+    <div class="animate">
+      <div class="about-label" data-fr="À propos de PracTice" data-en="About PracTice">À propos de PracTice</div>
+      <h2 class="about-title" data-fr="Enseigner autrement. Apprendre mieux." data-en="Teach differently. Learn better.">Enseigner autrement. Apprendre mieux.</h2>
+      <p class="about-text" data-fr="PracTice est l'équipe d'ingénierie pédagogique d'IMT Business School. Nous accompagnons enseignants et formateurs dans l'intégration des outils numériques — Moodle, Wooclap, ChallengeMe, NotebookLM, IA générative — pour concevoir des expériences d'apprentissage plus engageantes, plus efficaces et à la hauteur d'une grande école." data-en="PracTice is the educational engineering team at IMT Business School. We support faculty and trainers in integrating digital tools — Moodle, Wooclap, ChallengeMe, NotebookLM, generative AI — to design more engaging, more effective learning experiences worthy of a leading business school.">PracTice est l'équipe d'ingénierie pédagogique d'IMT Business School. Nous accompagnons enseignants et formateurs dans l'intégration des outils numériques — Moodle, Wooclap, ChallengeMe, NotebookLM, IA générative — pour concevoir des expériences d'apprentissage plus engageantes, plus efficaces et à la hauteur d'une grande école.</p>
+      <p class="about-text" data-fr="Notre rôle : être à vos côtés, de la conception d'un dispositif pédagogique à la production de ressources multimédia, en passant par la formation aux outils et l'exploration des usages de l'IA dans l'enseignement supérieur." data-en="Our role: to be by your side, from designing a learning experience to producing multimedia resources, including tool training and exploring AI uses in higher education.">Notre rôle : être à vos côtés, de la conception d'un dispositif pédagogique à la production de ressources multimédia, en passant par la formation aux outils et l'exploration des usages de l'IA dans l'enseignement supérieur.</p>
+      <div class="about-values">
+        <span class="value-chip" data-fr="Audace" data-en="Boldness">Audace</span>
+        <span class="value-chip" data-fr="Excellence" data-en="Excellence">Excellence</span>
+        <span class="value-chip" data-fr="Ouverture" data-en="Openness">Ouverture</span>
+        <span class="value-chip" data-fr="Responsabilité" data-en="Responsibility">Responsabilité</span>
+        <span class="value-chip">RGPD-friendly</span>
+      </div>
+    </div>
+    <div class="about-visual animate delay-2" style="display:flex;align-items:center;justify-content:center;">
+      <img src="imageillustation.png" alt="Illustration PracTice" style="width:100%;max-width:500px;border-radius:16px;">
+    </div>
+  </div>
+</section>
+
+<section class="section-contact">
+  <div class="contact-inner">
+    <div>
+      <div class="contact-title" data-fr="Besoin d'un accompagnement pédagogique ?" data-en="Need educational support?">Besoin d'un accompagnement pédagogique ?</div>
+      <div class="contact-sub" data-fr="Tous nos outils sont en accès libre. Contactez-nous pour un accompagnement personnalisé." data-en="All our tools are freely accessible. Contact us for personalised support.">Tous nos outils sont en accès libre. Contactez-nous pour un accompagnement personnalisé.</div>
+    </div>
+    <div class="contact-actions">
+      <a href="mailto:practice@imt-bs.eu" class="btn-contact">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        <span data-fr="Contacter PracTice" data-en="Contact PracTice">Contacter PracTice</span>
+      </a>
+      <a href="https://www.imt-bs.eu" target="_blank" class="btn-ghost">imt-bs.eu →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <strong>Institut Mines-Télécom Business School</strong><br>
+      <span data-fr="Service PracTice — Ingénierie pédagogique" data-en="PracTice Team — Educational Engineering">Service PracTice — Ingénierie pédagogique</span><br>
+      9, rue Charles Fourier – 91011 Évry-Courcouronnes · <a href="mailto:practice@imt-bs.eu">practice@imt-bs.eu</a>
+    </div>
+    <div class="footer-right">
+      <span data-fr="La Grande École de l'Intelligence Digitale" data-en="The Grande École of Digital Intelligence">La Grande École de l'Intelligence Digitale</span><br>
+      <span data-fr="© 2025 IMT Business School · Tous droits réservés" data-en="© 2025 IMT Business School · All rights reserved">© 2025 IMT Business School · Tous droits réservés</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if (el.isIntersecting) { el.target.classList.add('visible'); observer.unobserve(el.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+function setLang(lang) {
+  document.querySelectorAll('[data-fr]').forEach(el => {
+    const text = el.getAttribute('data-' + lang);
+    if (text) {
+      // Preserve inner SVGs for tool-link elements
+      if (el.classList.contains('tool-link')) {
+        const svg = el.querySelector('svg');
+        el.textContent = text + ' ';
+        if (svg) el.appendChild(svg);
+      } else {
+        el.textContent = text;
+      }
+    }
+  });
+  document.documentElement.lang = lang;
+  document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  localStorage.setItem('lang', lang);
+}
+
+// Restore saved language
+const saved = localStorage.getItem('lang');
+if (saved && saved !== 'fr') setLang(saved);
+</script>
+</body>
+</html>
