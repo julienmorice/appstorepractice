@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PracTice — AI Educational Services · Institut Mines-Télécom Business School</title>
-<meta name="description" content="PracTice développe des outils pédagogiques augmentés par l'IA au service des enseignants et étudiants d'IMT Business School.">
+<meta name="description" content="PracTice développe des outils pédagogiques augmentés par l'IA et des serious games au service des enseignants et étudiants d'IMT Business School.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -109,6 +109,40 @@ nav a:hover { color: var(--bleu-imt); }
 .tool-card.violet .tool-link { color: var(--violet-imt); }
 .tool-tech { font-size: 0.68rem; color: var(--gris-texte); background: var(--gris-clair); padding: 0.2rem 0.5rem; border-radius: 4px; }
 
+/* SERIOUS GAMES */
+.section-games { position: relative; padding: 5rem 0; color: var(--blanc); background: radial-gradient(900px 420px at 12% 0%, rgba(173,29,137,0.28), transparent 65%), radial-gradient(800px 420px at 95% 100%, rgba(0,184,222,0.22), transparent 65%), #0B0E1F; overflow: hidden; }
+.section-games .section-header { border-bottom-color: rgba(255,255,255,0.1); gap: 2rem; }
+.section-games .section-title { color: var(--blanc); }
+.section-games .section-count { color: rgba(255,255,255,0.6); white-space: nowrap; }
+.games-intro { font-size: 0.95rem; line-height: 1.7; color: rgba(255,255,255,0.7); max-width: 60ch; margin-top: 0.6rem; }
+.games-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.game-card { display: flex; flex-direction: column; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+.game-card:hover { transform: translateY(-4px); border-color: var(--violet-imt); box-shadow: 0 18px 50px rgba(173,29,137,0.25); }
+.game-card.bleu:hover { border-color: var(--bleu-imt); box-shadow: 0 18px 50px rgba(0,184,222,0.2); }
+.game-card:focus-visible { outline: 3px solid var(--bleu-imt); outline-offset: 3px; }
+.game-visual { margin: 1.2rem 1.2rem 0; border-radius: 12px 12px 0 0; overflow: hidden; border: 1px solid rgba(255,255,255,0.12); border-bottom: 0; background: #070913; }
+.game-visual-bar { display: flex; align-items: center; gap: 6px; height: 26px; padding: 0 0.8rem; background: rgba(255,255,255,0.06); }
+.game-visual-bar span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.22); }
+.game-visual img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; transition: transform 0.4s ease; }
+.game-card:hover .game-visual img { transform: scale(1.03); }
+.game-body { display: flex; flex-direction: column; gap: 1rem; flex: 1; padding: 1.6rem 1.8rem 1.8rem; border-top: 1px solid rgba(255,255,255,0.1); }
+.game-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.game-tagline { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #F07BCF; }
+.game-card.bleu .game-tagline { color: var(--bleu-imt); }
+.game-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.45rem; font-weight: 700; letter-spacing: -0.02em; }
+.game-desc { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.72); }
+.game-facts { display: flex; flex-wrap: wrap; gap: 0.45rem; list-style: none; }
+.game-facts li { font-size: 0.75rem; padding: 0.3rem 0.7rem; border-radius: 100px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); }
+.game-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: auto; padding-top: 1.1rem; border-top: 1px solid rgba(255,255,255,0.1); }
+.game-cta { display: inline-flex; align-items: center; gap: 0.45rem; background: var(--violet-imt); color: var(--blanc); padding: 0.6rem 1.2rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: background 0.2s; }
+.game-card:hover .game-cta { background: #c42a9d; }
+.game-card.bleu .game-cta { background: var(--bleu-imt); color: #04222b; }
+.game-card.bleu:hover .game-cta { background: #33c9e8; }
+.game-cta, .game-top .badge { white-space: nowrap; flex-shrink: 0; }
+.game-context { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-align: right; }
+.badge-new { background: rgba(173,29,137,0.22); color: #F7B2E4; border: 1px solid rgba(240,123,207,0.4); }
+.badge-live-dark { background: rgba(0,184,222,0.14); color: #8EE3F5; border: 1px solid rgba(0,184,222,0.35); }
+
 /* ABOUT */
 .section-about { padding: 5rem 0; }
 .about-grid { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
@@ -155,6 +189,8 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
   .tool-video iframe { min-height: 220px; }
   .hero { grid-template-columns: 1fr; }
   .hero-card { display: none; }
+  .games-grid { grid-template-columns: 1fr; }
+  .section-games .section-header { flex-direction: column; align-items: flex-start; }
   .about-grid { grid-template-columns: 1fr; gap: 2rem; }
   .about-visual { display: none; }
   nav a:not(.lang-toggle) { display: none; }
@@ -164,6 +200,9 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
   .hero { padding: 3rem 1rem 2rem; }
   .section-inner, .contact-inner, .footer-inner { padding: 0 1rem; }
   .header-inner { padding: 0 1rem; }
+  .section-games { padding: 3.5rem 0; }
+  .game-visual { margin: 1rem 1rem 0; }
+  .game-body { padding: 1.3rem 1.2rem 1.4rem; }
   .contact-inner { flex-direction: column; align-items: flex-start; }
   .footer-inner { flex-direction: column; }
   .footer-right { text-align: left; }
@@ -184,6 +223,7 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
     </div>
     <nav>
       <a href="#outils" data-fr="Nos outils" data-en="Our tools">Nos outils</a>
+      <a href="#serious-games">Serious games</a>
       <a href="#about" data-fr="À propos" data-en="About">À propos</a>
       <div class="lang-toggle">
         <button id="btn-fr" class="active" onclick="setLang('fr')">FR</button>
@@ -216,15 +256,19 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
       <div class="hero-card-title" data-fr="Écosystème PracTice 2025–2026" data-en="PracTice Ecosystem 2025–2026">Écosystème PracTice 2025–2026</div>
       <div class="stat-row">
         <div class="stat-item">
-          <div class="stat-num">5</div>
+          <div class="stat-num">4</div>
           <div class="stat-label" data-fr="Outils disponibles" data-en="Available tools">Outils disponibles</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num violet">2</div>
+          <div class="stat-label">Serious games</div>
         </div>
       </div>
       <div class="hero-pill"><span class="pill-dot dot-blue"></span><span data-fr="SmartReviz · Révision IA pour Moodle" data-en="SmartReviz · AI revision for Moodle">SmartReviz · Révision IA pour Moodle</span></div>
-      <div class="hero-pill"><span class="pill-dot dot-violet"></span><span data-fr="Syllabo · Générateur de syllabus" data-en="Syllabo · Syllabus generator">Syllabo · Générateur de syllabus</span></div>
+      <div class="hero-pill"><span class="pill-dot dot-violet"></span><span data-fr="IMT Smart Minutes · Compte rendu de réunion" data-en="IMT Smart Minutes · Meeting minutes">IMT Smart Minutes · Compte rendu de réunion</span></div>
       <div class="hero-pill"><span class="pill-dot dot-blue"></span><span data-fr="Ateliers de réflexion · Questions à partir d'un document" data-en="Reflection workshops · Questions from a document">Ateliers de réflexion · Questions à partir d'un document</span></div>
       <div class="hero-pill"><span class="pill-dot dot-violet"></span><span data-fr="Contrat pédagogique IA · Cadre d'usage signable" data-en="AI learning contract · Signable usage framework">Contrat pédagogique IA · Cadre d'usage signable</span></div>
-      <div class="hero-pill"><span class="pill-dot dot-blue"></span><span data-fr="Bingo Sujets IMT-BS · Entraînement aux oraux" data-en="Bingo Sujets IMT-BS · Oral exam training">Bingo Sujets IMT-BS · Entraînement aux oraux</span></div>
+      <div class="hero-pill"><span class="pill-dot dot-blue"></span><span data-fr="Serious games · L'Entreprise Mystère, Bingo Sujets" data-en="Serious games · L'Entreprise Mystère, Bingo Sujets">Serious games · L'Entreprise Mystère, Bingo Sujets</span></div>
     </div>
   </div>
 </section>
@@ -236,7 +280,7 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
         <div class="section-label" data-fr="Catalogue" data-en="Catalogue">Catalogue</div>
         <div class="section-title" data-fr="Nos services IA en ligne" data-en="Our online AI services">Nos services IA en ligne</div>
       </div>
-      <div class="section-count" data-fr="5 outils · Accès libre" data-en="5 tools · Free access">5 outils · Accès libre</div>
+      <div class="section-count" data-fr="4 outils · Accès libre" data-en="4 tools · Free access">4 outils · Accès libre</div>
     </div>
 
     <div class="tools-grid">
@@ -251,7 +295,7 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
             <div class="tool-name">SmartReviz</div>
             <div class="tool-tagline" data-fr="Révision intelligente pour Moodle" data-en="Smart revision for Moodle">Révision intelligente pour Moodle</div>
           </div>
-          <p class="tool-desc" data-fr="Génère automatiquement des modules de révision à partir de vos contenus de cours : QCM, flashcards et synthèses via l'API Claude, prêts à intégrer dans Moodle." data-en="Automatically generates revision modules from your course content: MCQs, flashcards and summaries via the Claude API, ready to integrate into Moodle.">Génère automatiquement des modules de révision à partir de vos contenus de cours : QCM, flashcards et synthèses via l'API Claude, prêts à intégrer dans Moodle.</p>
+          <p class="tool-desc" data-fr="Génère automatiquement des modules de révision à partir de vos contenus de cours : QCM, flashcards et synthèses générés par Mistral via ILaaS, l'IA mutualisée de l'enseignement supérieur et de la recherche, prêts à intégrer dans Moodle." data-en="Automatically generates revision modules from your course content: MCQs, flashcards and summaries generated by Mistral via ILaaS, the shared AI service of French higher education and research, ready to integrate into Moodle.">Génère automatiquement des modules de révision à partir de vos contenus de cours : QCM, flashcards et synthèses générés par Mistral via ILaaS, l'IA mutualisée de l'enseignement supérieur et de la recherche, prêts à intégrer dans Moodle.</p>
           <div class="tool-footer">
             <span class="tool-link" data-fr="Accéder librement" data-en="Access freely">Accéder librement <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
             <span class="badge badge-free" style="font-size:0.62rem;" data-fr="Accès libre" data-en="Free access">Accès libre</span>
@@ -263,23 +307,26 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
       </div>
 
       <div class="tool-row animate delay-2">
-        <a class="tool-card violet" href="https://syllabo-votre-assistant-syllabus-de-practice-imt-437066220015.us-west1.run.app/" target="_blank" rel="noopener" style="margin:0;">
+        <a class="tool-card violet" href="https://practice-imtbs.github.io/imt-smart-minutes/" target="_blank" rel="noopener" style="margin:0;">
           <div class="tool-top">
-            <div class="tool-icon icon-violet">📝</div>
+            <div class="tool-icon icon-violet">🎙️</div>
             <span class="badge badge-live" data-fr="En ligne" data-en="Online">En ligne</span>
           </div>
           <div>
-            <div class="tool-name">Syllabo</div>
-            <div class="tool-tagline" data-fr="Assistant syllabus pédagogique" data-en="Educational syllabus assistant">Assistant syllabus pédagogique</div>
+            <div class="tool-name">IMT Smart Minutes</div>
+            <div class="tool-tagline" data-fr="De l'enregistrement au compte rendu" data-en="From recording to meeting minutes">De l'enregistrement au compte rendu</div>
           </div>
-          <p class="tool-desc" data-fr="Structurez vos cours en quelques minutes. Syllabo guide l'enseignant dans la création d'un syllabus conforme aux standards IMT-BS, avec objectifs, compétences et évaluation." data-en="Structure your courses in minutes. Syllabo guides instructors in creating a syllabus aligned with IMT-BS standards, covering objectives, competencies and assessment.">Structurez vos cours en quelques minutes. Syllabo guide l'enseignant dans la création d'un syllabus conforme aux standards IMT-BS, avec objectifs, compétences et évaluation.</p>
+          <p class="tool-desc" data-fr="Transcrit l'enregistrement d'une réunion en distinguant les intervenants (Voxtral de Mistral AI), puis rédige un compte rendu structuré avec relevé de décisions et d'actions, téléchargeable en Word. Sans serveur ni base de données." data-en="Transcribes a meeting recording and tells speakers apart (Mistral AI's Voxtral), then drafts structured minutes with a list of decisions and actions, downloadable as a Word file. No server, no database.">Transcrit l'enregistrement d'une réunion en distinguant les intervenants (Voxtral de Mistral AI), puis rédige un compte rendu structuré avec relevé de décisions et d'actions, téléchargeable en Word. Sans serveur ni base de données.</p>
           <div class="tool-footer">
             <span class="tool-link" data-fr="Accéder librement" data-en="Access freely">Accéder librement <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
-            <span class="badge badge-free" style="font-size:0.62rem;" data-fr="Accès libre" data-en="Free access">Accès libre</span>
+            <span class="badge badge-free" style="font-size:0.62rem;" data-fr="Clé Mistral requise" data-en="Mistral key required">Clé Mistral requise</span>
           </div>
         </a>
         <div class="tool-video">
-          <iframe title="Démo Syllabo" src="https://mediaserver.ip-paris.fr/permalink/v126d3e12561ay6a6x3n/iframe/" allowfullscreen="allowfullscreen" allow="autoplay"></iframe>
+          <div class="tool-video-placeholder">
+            <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span data-fr="Démo vidéo à venir" data-en="Demo video coming soon">Démo vidéo à venir</span>
+          </div>
         </div>
       </div>
 
@@ -331,31 +378,71 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
         </div>
       </div>
 
-      <div class="tool-row animate">
-        <a class="tool-card" href="https://julienmorice.github.io/BingoSujetImtBsTraining/" target="_blank">
-          <div class="tool-header">
-            <span class="tool-icon">🎰</span>
-            <div class="tool-badges">
-              <span class="badge badge-live" data-fr="En ligne" data-en="Online">En ligne</span>
-            </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-games" id="serious-games">
+  <div class="section-inner">
+    <div class="section-header animate">
+      <div>
+        <div class="section-label">Serious games</div>
+        <h2 class="section-title" data-fr="Apprendre en jouant" data-en="Learning through play">Apprendre en jouant</h2>
+        <p class="games-intro" data-fr="Des jeux pédagogiques conçus avec les équipes d'IMT-BS pour transmettre autrement : immersion, coopération et droit à l'erreur. Sans compte, sans installation, directement dans le navigateur." data-en="Educational games designed with IMT-BS teams to teach differently: immersion, cooperation and the right to make mistakes. No account, no installation, straight in the browser.">Des jeux pédagogiques conçus avec les équipes d'IMT-BS pour transmettre autrement : immersion, coopération et droit à l'erreur. Sans compte, sans installation, directement dans le navigateur.</p>
+      </div>
+      <div class="section-count" data-fr="2 jeux · Accès libre" data-en="2 games · Free access">2 jeux · Accès libre</div>
+    </div>
+
+    <div class="games-grid">
+
+      <a class="game-card animate delay-1" href="https://practice-imtbs.github.io/entreprisemysterepourlesapprentisimtbs/" target="_blank" rel="noopener">
+        <div class="game-visual" aria-hidden="true">
+          <div class="game-visual-bar"><span></span><span></span><span></span></div>
+          <img src="sg_entreprise_mystere.webp" alt="" width="960" height="600" loading="lazy">
+        </div>
+        <div class="game-body">
+          <div class="game-top">
+            <span class="game-tagline" data-fr="Enquête · Rentrée des apprentis" data-en="Investigation · Apprentice induction day">Enquête · Rentrée des apprentis</span>
+            <span class="badge badge-new" data-fr="Nouveau" data-en="New">Nouveau</span>
           </div>
-          <div>
-            <div class="tool-name">Bingo Sujets IMT-BS</div>
-            <div class="tool-tagline" data-fr="Entraînement · Oraux d'admission" data-en="Training · Admission oral exams">Entraînement · Oraux d'admission</div>
-          </div>
-          <p class="tool-desc" data-fr="Permet d'accéder à la version d'entraînement de l'application Bingo Sujet IMT-BS utilisée dans le cadre des oraux d'admissions. Elle prépare les candidats pour mieux anticiper et se préparer." data-en="Access the training version of the Bingo Sujet IMT-BS application used in admission oral exams. It helps candidates better anticipate and prepare themselves.">Permet d'accéder à la version d'entraînement de l'application Bingo Sujet IMT-BS utilisée dans le cadre des oraux d'admissions. Elle prépare les candidats pour mieux anticiper et se préparer.</p>
-          <div class="tool-footer">
-            <span class="tool-link" data-fr="Accéder librement" data-en="Access freely">Accéder librement <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
-            <span class="badge badge-free" style="font-size:0.62rem;" data-fr="Accès libre" data-en="Free access">Accès libre</span>
-          </div>
-        </a>
-        <div class="tool-video">
-          <div class="tool-video-placeholder">
-            <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            <span data-fr="Démo vidéo à venir" data-en="Demo video coming soon">Démo vidéo à venir</span>
+          <div class="game-name">L'Entreprise Mystère</div>
+          <p class="game-desc" data-fr="Les apprentis deviennent agents secrets de l'Académie de l'Alternance et résolvent 3 dossiers d'enquête pour maîtriser les règles de l'alternance : émargement Edusign, absences, contrat d'objectif, visites entreprise, recours. Une finale Wooclap en amphi clôt la mission." data-en="Apprentices become secret agents of the Work-Study Academy and crack 3 case files to master the rules of apprenticeship: Edusign attendance, absences, objectives agreement, company visits, appeals. A Wooclap final in the lecture hall wraps up the mission.">Les apprentis deviennent agents secrets de l'Académie de l'Alternance et résolvent 3 dossiers d'enquête pour maîtriser les règles de l'alternance : émargement Edusign, absences, contrat d'objectif, visites entreprise, recours. Une finale Wooclap en amphi clôt la mission.</p>
+          <ul class="game-facts">
+            <li data-fr="👥 En binôme" data-en="👥 In pairs">👥 En binôme</li>
+            <li>⏱ ~45 min</li>
+            <li data-fr="📱 Smartphone, hors ligne" data-en="📱 Smartphone, works offline">📱 Smartphone, hors ligne</li>
+            <li data-fr="🔒 Aucune donnée collectée" data-en="🔒 No data collected">🔒 Aucune donnée collectée</li>
+          </ul>
+          <div class="game-footer">
+            <span class="game-cta"><span data-fr="Lancer la mission" data-en="Start the mission">Lancer la mission</span> <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+            <span class="game-context" data-fr="Avec le Career Center" data-en="With the Career Center">Avec le Career Center</span>
           </div>
         </div>
-      </div>
+      </a>
+
+      <a class="game-card bleu animate delay-2" href="https://julienmorice.github.io/BingoSujetImtBsTraining/" target="_blank" rel="noopener">
+        <div class="game-visual" aria-hidden="true">
+          <div class="game-visual-bar"><span></span><span></span><span></span></div>
+          <img src="sg_bingo_sujets.webp" alt="" width="960" height="600" loading="lazy">
+        </div>
+        <div class="game-body">
+          <div class="game-top">
+            <span class="game-tagline" data-fr="Entraînement · Oraux d'admission" data-en="Training · Admission oral exams">Entraînement · Oraux d'admission</span>
+            <span class="badge badge-live-dark" data-fr="En ligne" data-en="Online">En ligne</span>
+          </div>
+          <div class="game-name">Bingo Sujets IMT-BS</div>
+          <p class="game-desc" data-fr="Trois roues tirent au sort un secteur, une ressource et un verbe pour composer un sujet d'oral, chronomètre à l'appui. Cette version d'entraînement permet aux candidats de comprendre et d'anticiper l'exercice du jour J : les sujets diffèrent de ceux de l'oral d'admission." data-en="Three reels draw a sector, a resource and a verb to build an oral exam topic, with a built-in timer. This training version lets candidates understand and anticipate the exercise before the big day: topics differ from those used in the admission oral.">Trois roues tirent au sort un secteur, une ressource et un verbe pour composer un sujet d'oral, chronomètre à l'appui. Cette version d'entraînement permet aux candidats de comprendre et d'anticiper l'exercice du jour J : les sujets diffèrent de ceux de l'oral d'admission.</p>
+          <ul class="game-facts">
+            <li data-fr="🎓 Candidats à l'admission" data-en="🎓 Admission candidates">🎓 Candidats à l'admission</li>
+            <li data-fr="🎰 Sujet tiré au sort" data-en="🎰 Random topic">🎰 Sujet tiré au sort</li>
+            <li data-fr="⏱ Chrono intégré" data-en="⏱ Built-in timer">⏱ Chrono intégré</li>
+          </ul>
+          <div class="game-footer">
+            <span class="game-cta"><span data-fr="S'entraîner" data-en="Start practising">S'entraîner</span> <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+            <span class="game-context" data-fr="Version d'entraînement" data-en="Training version">Version d'entraînement</span>
+          </div>
+        </div>
+      </a>
 
     </div>
   </div>
