@@ -308,7 +308,7 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
           </div>
         </a>
         <div class="tool-video">
-          <iframe title="Démo SmartReviz" src="https://mediaserver.ip-paris.fr/permalink/v126d5d213347t0xm04h/iframe/" allowfullscreen="allowfullscreen" allow="autoplay" loading="lazy"></iframe>
+          <iframe title="Démo SmartReviz" data-title-fr="Démo SmartReviz" data-title-en="SmartReviz demo" data-src-fr="https://mediaserver.ip-paris.fr/permalink/v126d5d213347t0xm04h/iframe/" data-src-en="https://mediaserver.ip-paris.fr/permalink/v126d5d4efb9coi9gzk9/iframe/" src="https://mediaserver.ip-paris.fr/permalink/v126d5d213347t0xm04h/iframe/" allowfullscreen="allowfullscreen" allow="autoplay" loading="lazy"></iframe>
         </div>
       </div>
 
@@ -329,7 +329,7 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
           </div>
         </a>
         <div class="tool-video">
-          <iframe title="Démo IMT Smart Minutes" src="https://mediaserver.ip-paris.fr/permalink/v126d5d213351c4tz2yo/iframe/" allowfullscreen="allowfullscreen" allow="autoplay" loading="lazy"></iframe>
+          <iframe title="Démo IMT Smart Minutes" data-title-fr="Démo IMT Smart Minutes" data-title-en="IMT Smart Minutes demo" data-src-fr="https://mediaserver.ip-paris.fr/permalink/v126d5d213351c4tz2yo/iframe/" data-src-en="https://mediaserver.ip-paris.fr/permalink/v126d5d4efba723di5im/iframe/" src="https://mediaserver.ip-paris.fr/permalink/v126d5d213351c4tz2yo/iframe/" allowfullscreen="allowfullscreen" allow="autoplay" loading="lazy"></iframe>
         </div>
       </div>
 
@@ -350,7 +350,7 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
           </div>
         </a>
         <div class="tool-video">
-          <iframe title="Démo Ateliers de réflexion" src="https://mediaserver.ip-paris.fr/permalink/v126d5d21335bds87ul0/iframe/" allowfullscreen="allowfullscreen" allow="autoplay" loading="lazy"></iframe>
+          <iframe title="Démo Ateliers de réflexion" data-title-fr="Démo Ateliers de réflexion" data-title-en="Reflection workshops demo" data-src-fr="https://mediaserver.ip-paris.fr/permalink/v126d5d21335bds87ul0/iframe/" data-src-en="https://mediaserver.ip-paris.fr/permalink/v126d5d4efbaeque7eyn/iframe/" src="https://mediaserver.ip-paris.fr/permalink/v126d5d21335bds87ul0/iframe/" allowfullscreen="allowfullscreen" allow="autoplay" loading="lazy"></iframe>
         </div>
       </div>
 
@@ -371,7 +371,7 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
           </div>
         </a>
         <div class="tool-video">
-          <iframe title="Démo Contrat pédagogique IA" src="https://mediaserver.ip-paris.fr/permalink/v126d5d21338emnr5582/iframe/" allowfullscreen="allowfullscreen" allow="autoplay" loading="lazy"></iframe>
+          <iframe title="Démo Contrat pédagogique IA" data-title-fr="Démo Contrat pédagogique IA" data-title-en="AI learning contract demo" data-src-fr="https://mediaserver.ip-paris.fr/permalink/v126d5d21338emnr5582/iframe/" data-src-en="https://mediaserver.ip-paris.fr/permalink/v126d5d4efbddgp0r32x/iframe/" src="https://mediaserver.ip-paris.fr/permalink/v126d5d21338emnr5582/iframe/" allowfullscreen="allowfullscreen" allow="autoplay" loading="lazy"></iframe>
         </div>
       </div>
 
@@ -517,6 +517,12 @@ function setLang(lang) {
         el.textContent = text;
       }
     }
+  });
+  document.querySelectorAll('iframe[data-src-fr]').forEach(el => {
+    const src = el.getAttribute('data-src-' + lang);
+    if (src && el.getAttribute('src') !== src) el.setAttribute('src', src);
+    const title = el.getAttribute('data-title-' + lang);
+    if (title) el.title = title;
   });
   document.documentElement.lang = lang;
   document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
