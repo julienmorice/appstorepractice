@@ -41,6 +41,9 @@ nav a { font-size: 0.85rem; font-weight: 400; color: var(--gris-texte); text-dec
 nav a:hover { color: var(--bleu-imt); }
 .nav-cta { background: var(--bleu-imt); color: var(--blanc) !important; padding: 0.5rem 1.2rem; border-radius: 6px; font-weight: 500 !important; }
 .nav-cta:hover { background: #0099ba !important; }
+.nav-private { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--violet-imt) !important; font-weight: 500 !important; padding: 0.45rem 0.9rem; border: 1px solid rgba(173,29,137,0.3); border-radius: 6px; white-space: nowrap; transition: background 0.2s; }
+.nav-private:hover { background: var(--violet-light); }
+.nav-private-short { display: none; }
 
 /* LANG TOGGLE */
 .lang-toggle { display: flex; align-items: center; gap: 0; background: var(--gris-clair); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
@@ -199,10 +202,17 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
   .section-games .section-header { flex-direction: column; align-items: flex-start; }
   .about-grid { grid-template-columns: 1fr; gap: 2rem; }
   .about-visual { display: none; }
-  nav a:not(.lang-toggle) { display: none; }
+  nav a:not(.lang-toggle):not(.nav-private) { display: none; }
+  nav { gap: 0.8rem; }
   .lang-toggle { display: flex !important; }
 }
 @media (max-width: 600px) {
+  .nav-private-long { display: none; }
+  .nav-private-short { display: inline; }
+  .nav-private { padding: 0.4rem 0.6rem; font-size: 0.8rem !important; }
+  .logo-sep, .logo-service span { display: none; }
+  .logo-block { gap: 0.6rem; }
+  nav { gap: 0.5rem; }
   .hero { padding: 3rem 1rem 2rem; }
   .section-inner, .contact-inner, .footer-inner { padding: 0 1rem; }
   .header-inner { padding: 0 1rem; }
@@ -212,6 +222,9 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
   .contact-inner { flex-direction: column; align-items: flex-start; }
   .footer-inner { flex-direction: column; }
   .footer-right { text-align: left; }
+}
+@media (max-width: 360px) {
+  .logo-sep, .logo-service { display: none; }
 }
 </style>
 </head>
@@ -231,6 +244,7 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
       <a href="#outils" data-fr="Nos outils" data-en="Our tools">Nos outils</a>
       <a href="#serious-games">Serious games</a>
       <a href="#about" data-fr="À propos" data-en="About">À propos</a>
+      <a href="https://applications-internes-practice.pages.dev/" class="nav-private" title="Espace réservé aux équipes IMT-BS — connexion par code e-mail"><span aria-hidden="true">🔒</span><span class="nav-private-long" data-fr="Applications de mon service" data-en="My team's apps">Applications de mon service</span><span class="nav-private-short" data-fr="Mon service" data-en="My team">Mon service</span></a>
       <div class="lang-toggle">
         <button id="btn-fr" class="active" onclick="setLang('fr')">FR</button>
         <button id="btn-en" onclick="setLang('en')">EN</button>
