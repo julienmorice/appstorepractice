@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <g>
+    <path d="M100 52 V30" stroke="#AD1D89" stroke-width="5" stroke-linecap="round"/>
+    <g><circle cx="100" cy="24" r="11" fill="#00B8DE"/><circle cx="96" cy="20" r="3.5" fill="#fff" opacity=".8"/></g>
+    <path d="M44 122 q-16 6 -14 24" stroke="#8a166d" stroke-width="11" stroke-linecap="round" fill="none"/>
+    <g><path d="M152 118 q20 -8 22 -30" stroke="#8a166d" stroke-width="11" stroke-linecap="round" fill="none"/><circle cx="174" cy="86" r="8" fill="#8a166d"/></g>
+    <rect x="38" y="50" width="124" height="118" rx="52" fill="#AD1D89"/>
+    <rect x="38" y="50" width="124" height="118" rx="52" fill="url(#lb-reflet)"/>
+    <rect x="54" y="70" width="92" height="62" rx="30" fill="#fff"/>
+    <ellipse cx="62" cy="126" rx="9" ry="5.5" fill="#ff9fcf" opacity=".75"/>
+    <ellipse cx="138" cy="126" rx="9" ry="5.5" fill="#ff9fcf" opacity=".75"/>
+    <g><circle cx="80" cy="98" r="10" fill="#1d1b22"/><circle cx="120" cy="98" r="10" fill="#1d1b22"/><circle cx="84" cy="94" r="3.5" fill="#fff"/><circle cx="124" cy="94" r="3.5" fill="#fff"/></g>
+    <path d="M88 116 q12 11 24 0" stroke="#1d1b22" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <g transform="translate(70 150)"><rect width="60" height="26" rx="5" fill="#00B8DE"/><path d="M30 2 v22" stroke="#fff" stroke-width="2.5"/><path d="M8 9 h16 M8 15 h14 M36 9 h16 M36 15 h12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".85"/></g>
+  </g>
+  <defs><linearGradient id="lb-reflet" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+</svg>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LearnyBot · PracTice — Institut Mines-Télécom Business School</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#AD1D89">
+<meta name="description" content="LearnyBot : un assistant de révision par cours, intégré à Moodle, qui ne répond qu'à partir des documents du cours. Essayez la démo et demandez le vôtre au service PracTice.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://learnybot.pages.dev">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bleu-imt:    #00B8DE;
+  --violet-imt:  #AD1D89;
+  --noir:        #000000;
+  --blanc:       #FFFFFF;
+  --gris-clair:  #F4F6F8;
+  --gris-texte:  #5A6270;
+  --border:      rgba(0,0,0,0.09);
+  --bleu-light:  rgba(0,184,222,0.08);
+  --violet-light:rgba(173,29,137,0.08);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--blanc); color: var(--noir); overflow-x: hidden; }
+
+/* HEADER */
+header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.header-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 68px; display: flex; align-items: center; justify-content: space-between; }
+.logo-block { display: flex; align-items: center; gap: 1rem; }
+.logo-sep { width: 1px; height: 28px; background: var(--border); }
+.logo-service { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; font-weight: 600; color: var(--violet-imt); letter-spacing: -0.01em; }
+.logo-service span { display: block; font-size: 0.65rem; font-weight: 400; color: var(--gris-texte); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 1px; }
+nav { display: flex; align-items: center; gap: 2rem; }
+nav a { font-size: 0.85rem; font-weight: 400; color: var(--gris-texte); text-decoration: none; transition: color 0.2s; }
+nav a:hover { color: var(--bleu-imt); }
+.nav-cta { background: var(--bleu-imt); color: var(--blanc) !important; padding: 0.5rem 1.2rem; border-radius: 6px; font-weight: 500 !important; }
+.nav-cta:hover { background: #0099ba !important; }
+.nav-private { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--violet-imt) !important; font-weight: 500 !important; padding: 0.45rem 0.9rem; border: 1px solid rgba(173,29,137,0.3); border-radius: 6px; white-space: nowrap; transition: background 0.2s; }
+.nav-private:hover { background: var(--violet-light); }
+.nav-private-short { display: none; }
+
+/* LANG TOGGLE */
+.lang-toggle { display: flex; align-items: center; gap: 0; background: var(--gris-clair); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.lang-toggle button { background: none; border: none; cursor: pointer; font-size: 0.78rem; font-weight: 600; padding: 0.35rem 0.7rem; color: var(--gris-texte); font-family: 'DM Sans', sans-serif; transition: background 0.15s, color 0.15s; letter-spacing: 0.04em; }
+.lang-toggle button.active { background: var(--bleu-imt); color: var(--blanc); }
+.lang-toggle button:not(.active):hover { background: var(--border); }
+
+/* HERO */
+.hero { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem 4rem; display: grid; grid-template-columns: 1fr 400px; gap: 4rem; align-items: center; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bleu-imt); margin-bottom: 1.5rem; padding: 0.35rem 0.8rem; background: var(--bleu-light); border-radius: 100px; border: 1px solid rgba(0,184,222,0.2); }
+.hero-eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--bleu-imt); border-radius: 50%; }
+.hero h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+.accent-blue { color: var(--bleu-imt); }
+.accent-violet { color: var(--violet-imt); }
+.hero-desc { font-size: 1.05rem; line-height: 1.75; color: var(--gris-texte); max-width: 48ch; margin-bottom: 2.5rem; }
+.hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--bleu-imt); color: var(--blanc); padding: 0.8rem 1.8rem; border-radius: 8px; font-size: 0.95rem; font-weight: 500; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+.btn-primary:hover { background: #0099ba; transform: translateY(-1px); }
+.btn-secondary { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--violet-imt); padding: 0.8rem 0; font-size: 0.9rem; font-weight: 500; text-decoration: none; }
+
+/* Carte hero */
+.hero-card { background: var(--gris-clair); border: 1px solid var(--border); border-radius: 20px; padding: 1.8rem; position: relative; overflow: hidden; }
+.hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--bleu-imt), var(--violet-imt)); }
+.hero-card-title { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gris-texte); margin-bottom: 1.2rem; }
+.stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1rem; }
+.stat-item { background: var(--blanc); border-radius: 12px; padding: 1rem; border: 1px solid var(--border); }
+.stat-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 700; letter-spacing: -0.04em; color: var(--bleu-imt); line-height: 1; margin-bottom: 0.3rem; }
+.stat-num.violet { color: var(--violet-imt); }
+.stat-label { font-size: 0.7rem; color: var(--gris-texte); }
+.hero-pill { display: flex; align-items: center; gap: 0.5rem; background: var(--blanc); border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem 0.9rem; font-size: 0.78rem; color: var(--noir); margin-top: 0.5rem; }
+.pill-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.dot-blue { background: var(--bleu-imt); }
+.dot-violet { background: var(--violet-imt); }
+
+/* OUTILS */
+.section-outils { background: var(--gris-clair); padding: 4rem 0; }
+.section-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+.section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bleu-imt); margin-bottom: 0.4rem; }
+.section-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
+.section-count { font-size: 0.8rem; color: var(--gris-texte); }
+.tools-grid { display: flex; flex-direction: column; gap: 2rem; }
+.tool-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: stretch; }
+.tool-video { background: var(--blanc); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; align-items: center; justify-content: center; min-height: 280px; }
+.tool-video iframe { width: 100%; height: 100%; min-height: 280px; border: 0; border-radius: 16px; }
+.tool-video-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.8rem; color: var(--gris-texte); font-size: 0.85rem; width: 100%; }
+.tool-video-placeholder svg { opacity: 0.3; }
+.tool-video-placeholder span { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; opacity: 0.5; }
+.tool-card { background: var(--blanc); border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 1rem; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; position: relative; overflow: hidden; }
+.tool-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--bleu-imt); opacity: 0; transition: opacity 0.2s; }
+.tool-card.violet::after { background: var(--violet-imt); }
+.tool-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.09); border-color: var(--bleu-imt); }
+.tool-card.violet:hover { border-color: var(--violet-imt); }
+.tool-card:hover::after { opacity: 1; }
+.tool-top { display: flex; align-items: flex-start; justify-content: space-between; }
+.tool-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+.icon-blue { background: var(--bleu-light); }
+.icon-violet { background: var(--violet-light); }
+.badge { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.25rem 0.65rem; border-radius: 100px; }
+.badge-live { background: #e6f7fb; color: #006d86; border: 1px solid rgba(0,184,222,0.3); }
+.badge-beta { background: rgba(173,29,137,0.08); color: #7a0f61; border: 1px solid rgba(173,29,137,0.2); }
+.badge-access { background: #fff3e0; color: #b45309; border: 1px solid rgba(180,83,9,0.3); }
+.badge-free { background: #e8f5e9; color: #2e7d32; border: 1px solid rgba(46,125,50,0.3); }
+.btn-request { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--bleu-imt); color: var(--blanc); padding: 0.45rem 1rem; border-radius: 6px; font-size: 0.78rem; font-weight: 500; text-decoration: none; transition: background 0.2s; }
+.btn-request:hover { background: #0099ba; }
+.tool-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; }
+.tool-tagline { font-size: 0.78rem; font-weight: 500; color: var(--bleu-imt); margin-top: 0.1rem; }
+.tool-card.violet .tool-tagline { color: var(--violet-imt); }
+.tool-desc { font-size: 0.875rem; line-height: 1.7; color: var(--gris-texte); flex: 1; }
+.tool-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: auto; }
+.tool-link { font-size: 0.8rem; font-weight: 500; color: var(--bleu-imt); display: flex; align-items: center; gap: 0.3rem; }
+.tool-card.violet .tool-link { color: var(--violet-imt); }
+.tool-tech { font-size: 0.68rem; color: var(--gris-texte); background: var(--gris-clair); padding: 0.2rem 0.5rem; border-radius: 4px; }
+
+/* SERIOUS GAMES */
+.section-games { position: relative; padding: 5rem 0; color: var(--blanc); background: radial-gradient(900px 420px at 12% 0%, rgba(173,29,137,0.28), transparent 65%), radial-gradient(800px 420px at 95% 100%, rgba(0,184,222,0.22), transparent 65%), #0B0E1F; overflow: hidden; }
+.section-games .section-header { border-bottom-color: rgba(255,255,255,0.1); gap: 2rem; }
+.section-games .section-title { color: var(--blanc); }
+.section-games .section-count { color: rgba(255,255,255,0.6); white-space: nowrap; }
+.games-intro { font-size: 0.95rem; line-height: 1.7; color: rgba(255,255,255,0.7); max-width: 60ch; margin-top: 0.6rem; }
+.games-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.game-card { display: flex; flex-direction: column; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+.game-card:hover { transform: translateY(-4px); border-color: var(--violet-imt); box-shadow: 0 18px 50px rgba(173,29,137,0.25); }
+.game-card.bleu:hover { border-color: var(--bleu-imt); box-shadow: 0 18px 50px rgba(0,184,222,0.2); }
+.game-card:focus-visible { outline: 3px solid var(--bleu-imt); outline-offset: 3px; }
+.game-visual { margin: 1.2rem 1.2rem 0; border-radius: 12px 12px 0 0; overflow: hidden; border: 1px solid rgba(255,255,255,0.12); border-bottom: 0; background: #070913; }
+.game-visual-bar { display: flex; align-items: center; gap: 6px; height: 26px; padding: 0 0.8rem; background: rgba(255,255,255,0.06); }
+.game-visual-bar span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.22); }
+.game-visual img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; transition: transform 0.4s ease; }
+.game-card:hover .game-visual img { transform: scale(1.03); }
+.game-body { display: flex; flex-direction: column; gap: 1rem; flex: 1; padding: 1.6rem 1.8rem 1.8rem; border-top: 1px solid rgba(255,255,255,0.1); }
+.game-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.game-tagline { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #F07BCF; }
+.game-card.bleu .game-tagline { color: var(--bleu-imt); }
+.game-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.45rem; font-weight: 700; letter-spacing: -0.02em; }
+.game-desc { font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.72); }
+.game-facts { display: flex; flex-wrap: wrap; gap: 0.45rem; list-style: none; }
+.game-facts li { font-size: 0.75rem; padding: 0.3rem 0.7rem; border-radius: 100px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); }
+.game-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: auto; padding-top: 1.1rem; border-top: 1px solid rgba(255,255,255,0.1); }
+.game-cta { display: inline-flex; align-items: center; gap: 0.45rem; background: var(--violet-imt); color: var(--blanc); padding: 0.6rem 1.2rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: background 0.2s; }
+.game-card:hover .game-cta { background: #c42a9d; }
+.game-card.bleu .game-cta { background: var(--bleu-imt); color: #04222b; }
+.game-card.bleu:hover .game-cta { background: #33c9e8; }
+.game-cta, .game-top .badge { white-space: nowrap; flex-shrink: 0; }
+.game-context { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-align: right; }
+.badge-new { background: rgba(173,29,137,0.22); color: #F7B2E4; border: 1px solid rgba(240,123,207,0.4); }
+.badge-live-dark { background: rgba(0,184,222,0.14); color: #8EE3F5; border: 1px solid rgba(0,184,222,0.35); }
+
+/* ABOUT */
+.section-about { padding: 5rem 0; }
+.about-grid { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.about-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--violet-imt); margin-bottom: 0.8rem; }
+.about-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.7rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; margin-bottom: 1.2rem; }
+.about-text { font-size: 0.95rem; line-height: 1.8; color: var(--gris-texte); margin-bottom: 1rem; }
+.about-values { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+.value-chip { font-size: 0.78rem; font-weight: 500; padding: 0.35rem 0.9rem; border-radius: 100px; border: 1px solid var(--border); }
+.about-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+/* CONTACT */
+.section-contact { background: var(--noir); color: var(--blanc); padding: 4rem 0; }
+.contact-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+.contact-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+.contact-sub { font-size: 0.9rem; opacity: 0.6; }
+.contact-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+.btn-contact { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--bleu-imt); color: var(--blanc); padding: 0.75rem 1.5rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: background 0.2s; }
+.btn-contact:hover { background: #0099ba; }
+.btn-ghost { color: rgba(255,255,255,0.6); font-size: 0.9rem; text-decoration: none; transition: color 0.2s; }
+.btn-ghost:hover { color: var(--blanc); }
+
+/* FOOTER */
+footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; border-top: 1px solid rgba(255,255,255,0.06); }
+.footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.footer-left { font-size: 0.78rem; line-height: 1.8; }
+.footer-left strong { color: rgba(255,255,255,0.75); font-weight: 500; }
+.footer-left a { color: rgba(255,255,255,0.4); text-decoration: none; }
+.footer-left a:hover { color: rgba(255,255,255,0.7); }
+.footer-right { font-size: 0.72rem; text-align: right; }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.animate { opacity: 0; }
+.animate.visible { animation: fadeUp 0.6s ease forwards; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .tool-row { grid-template-columns: 1fr; }
+  .tool-video { min-height: 220px; }
+  .tool-video iframe { min-height: 220px; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-card { display: none; }
+  .games-grid { grid-template-columns: 1fr; }
+  .section-games .section-header { flex-direction: column; align-items: flex-start; }
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .about-visual { display: none; }
+  nav a:not(.lang-toggle):not(.nav-private) { display: none; }
+  nav { gap: 0.8rem; }
+  .lang-toggle { display: flex !important; }
+}
+@media (max-width: 600px) {
+  .nav-private-long { display: none; }
+  .nav-private-short { display: inline; }
+  .nav-private { padding: 0.4rem 0.6rem; font-size: 0.8rem !important; }
+  .logo-sep, .logo-service span { display: none; }
+  .logo-block { gap: 0.6rem; }
+  nav { gap: 0.5rem; }
+  .hero { padding: 3rem 1rem 2rem; }
+  .section-inner, .contact-inner, .footer-inner { padding: 0 1rem; }
+  .header-inner { padding: 0 1rem; }
+  .section-games { padding: 3.5rem 0; }
+  .game-visual { margin: 1rem 1rem 0; }
+  .game-body { padding: 1.3rem 1.2rem 1.4rem; }
+  .contact-inner { flex-direction: column; align-items: flex-start; }
+  .footer-inner { flex-direction: column; }
+  .footer-right { text-align: left; }
+}
+@media (max-width: 360px) {
+  .logo-sep, .logo-service { display: none; }
+}
+</style>
+<style>
+.lb-page { background: var(--gris-clair); padding: 3.5rem 0 4.5rem; }
+.lb-retour { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.82rem; color: var(--gris-texte); text-decoration: none; margin-bottom: 1.4rem; }
+.lb-retour:hover { color: var(--violet-imt); }
+.lb-intro { display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; margin-bottom: 2.5rem; }
+.lb-intro h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; margin: 0.6rem 0 1rem; }
+.lb-intro p { font-size: 1.02rem; line-height: 1.75; color: var(--gris-texte); max-width: 62ch; }
+.lb-mascotte { width: 150px; height: 150px; animation: lb-flotte 3.6s ease-in-out infinite; }
+@keyframes lb-flotte { 50% { transform: translateY(-6px); } }
+.lb-grille { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 2rem; align-items: start; }
+.lb-demo { background: var(--blanc); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,0.06); }
+.lb-demo-tete { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.8rem 1.1rem; border-bottom: 1px solid var(--border); font-size: 0.78rem; color: var(--gris-texte); }
+.lb-demo-tete strong { color: var(--noir); font-weight: 600; }
+.lb-demo iframe { display: block; width: 100%; height: 640px; border: 0; }
+.lb-panneau { background: var(--blanc); border: 1px solid var(--border); border-radius: 18px; padding: 2rem; display: flex; flex-direction: column; gap: 1.3rem; position: relative; overflow: hidden; }
+.lb-panneau::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--bleu-imt), var(--violet-imt)); }
+.lb-panneau h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; }
+.lb-etapes { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; counter-reset: etape; }
+.lb-etapes li { display: grid; grid-template-columns: 2rem 1fr; gap: 0.8rem; font-size: 0.9rem; line-height: 1.6; color: var(--gris-texte); counter-increment: etape; }
+.lb-etapes li::before { content: counter(etape); width: 2rem; height: 2rem; border-radius: 50%; background: var(--violet-light); color: var(--violet-imt); font-weight: 700; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; }
+.lb-etapes strong { color: var(--noir); font-weight: 600; }
+.lb-points { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+.lb-point { background: var(--gris-clair); border-radius: 12px; padding: 0.85rem 0.95rem; font-size: 0.8rem; line-height: 1.5; color: var(--gris-texte); }
+.lb-point strong { display: block; color: var(--noir); font-size: 0.85rem; margin-bottom: 0.15rem; }
+.lb-cta { align-self: flex-start; }
+.lb-note { font-size: 0.78rem; line-height: 1.6; color: var(--gris-texte); }
+.lb-note a { color: var(--violet-imt); }
+@media (prefers-reduced-motion: reduce) { .lb-mascotte { animation: none; } }
+@media (max-width: 960px) { .lb-grille { grid-template-columns: 1fr; } .lb-demo iframe { height: 580px; } }
+@media (max-width: 700px) { .lb-intro { grid-template-columns: 1fr; } .lb-mascotte { display: none; } .lb-points { grid-template-columns: 1fr; } .lb-panneau { padding: 1.4rem; } .lb-cta { align-self: stretch; justify-content: center; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo-block" href="index.html" style="text-decoration:none;color:inherit;">
+      <img src="logo-imt-bs.webp" alt="IMT Business School" width="84" height="36" fetchpriority="high">
+      <div class="logo-sep"></div>
+      <div class="logo-service">
+        PracTice
+        <span data-fr="Ingénierie pédagogique" data-en="Educational Engineering">Ingénierie pédagogique</span>
+      </div>
+    </a>
+    <nav>
+      <a href="index.html#outils" data-fr="Nos outils" data-en="Our tools">Nos outils</a>
+      <a href="index.html#serious-games">Serious games</a>
+      <a href="index.html#about" data-fr="À propos" data-en="About">À propos</a>
+      <a href="https://applications-internes-practice.pages.dev/" class="nav-private" title="Espace réservé aux équipes IMT-BS — connexion par code e-mail"><span aria-hidden="true">🔒</span><span class="nav-private-long" data-fr="Applications de mon service" data-en="My team's apps">Applications de mon service</span><span class="nav-private-short" data-fr="Mon service" data-en="My team">Mon service</span></a>
+      <div class="lang-toggle">
+        <button id="btn-fr" class="active" onclick="setLang('fr')">FR</button>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="lb-page">
+  <div class="section-inner">
+    <a class="lb-retour" href="index.html#outils" data-fr="← Tous les outils" data-en="← All tools">← Tous les outils</a>
+    <div class="lb-intro">
+      <div>
+        <div class="hero-eyebrow" data-fr="Sur demande · Moodle" data-en="On request · Moodle">Sur demande · Moodle</div>
+        <h1>Learny<span class="accent-violet">Bot</span></h1>
+        <p data-fr="Un assistant de révision par cours, à intégrer dans Moodle. LearnyBot répond aux questions des apprenants uniquement à partir des documents du cours, cite le chapitre d'où vient l'information, et le dit quand une question sort du programme." data-en="A course-specific revision assistant to embed in Moodle. LearnyBot answers learners' questions using only the course documents, cites the chapter the information comes from, and says so when a question falls outside the course.">Un assistant de révision par cours, à intégrer dans Moodle. LearnyBot répond aux questions des apprenants uniquement à partir des documents du cours, cite le chapitre d'où vient l'information, et le dit quand une question sort du programme.</p>
+      </div>
+      <img class="lb-mascotte" src="learnybot-mascotte.svg" alt="" width="150" height="150">
+    </div>
+
+    <div class="lb-grille">
+      <div class="lb-demo">
+        <div class="lb-demo-tete"><span><strong data-fr="Essayez-le" data-en="Try it">Essayez-le</strong> · <span data-fr="ce LearnyBot connaît la documentation du service PracTice" data-en="this LearnyBot knows the PracTice team's documentation">ce LearnyBot connaît la documentation du service PracTice</span></span><span data-fr="Démo" data-en="Demo">Démo</span></div>
+        <iframe id="demo-learnybot" src="https://learnybot.pages.dev/?bot=nxqzpp4yr95u7w9nt9hb9cfn&theme=light" title="LearnyBot — démonstration" loading="lazy" allow="clipboard-write"></iframe>
+      </div>
+
+      <div class="lb-panneau">
+        <h2 data-fr="Un LearnyBot pour votre cours" data-en="A LearnyBot for your course">Un LearnyBot pour votre cours</h2>
+        <ol class="lb-etapes">
+          <li><span data-fr="Vous écrivez à l'équipe PracTice en présentant votre cours." data-en="You write to the PracTice team describing your course.">Vous écrivez à l'équipe PracTice en présentant votre cours.</span></li>
+          <li><span data-fr="Vous transmettez ses documents : Word, PDF, diaporamas, livres H5P, scripts de vidéos." data-en="You send its documents: Word, PDF, slides, H5P books, video scripts.">Vous transmettez ses documents : Word, PDF, diaporamas, livres H5P, scripts de vidéos.</span></li>
+          <li><span data-fr="PracTice crée votre LearnyBot et vous remet le code à coller dans votre espace Moodle." data-en="PracTice builds your LearnyBot and gives you the code to paste into your Moodle space.">PracTice crée votre LearnyBot et vous remet le code à coller dans votre espace Moodle.</span></li>
+        </ol>
+        <div class="lb-points">
+          <div class="lb-point"><strong data-fr="Fidèle au cours" data-en="True to the course">Fidèle au cours</strong><span data-fr="Il cite ses sources et n'invente rien." data-en="It cites its sources and makes nothing up.">Il cite ses sources et n'invente rien.</span></div>
+          <div class="lb-point"><strong data-fr="Jusqu'à 150 pages" data-en="Up to 150 pages">Jusqu'à 150 pages</strong><span data-fr="Soit environ 400 000 caractères de texte." data-en="About 400,000 characters of text.">Soit environ 400 000 caractères de texte.</span></div>
+          <div class="lb-point"><strong data-fr="Toujours à jour" data-en="Always up to date">Toujours à jour</strong><span data-fr="On ajoute ou retire un document sans changer le lien." data-en="Documents can be added or removed without changing the link.">On ajoute ou retire un document sans changer le lien.</span></div>
+          <div class="lb-point"><strong data-fr="IA hébergée en France" data-en="AI hosted in France">IA hébergée en France</strong><span data-fr="Modèle Qwen via ILaaS, l'IA mutualisée de l'enseignement supérieur." data-en="Qwen model via ILaaS, French higher education's shared AI service.">Modèle Qwen via ILaaS, l'IA mutualisée de l'enseignement supérieur.</span></div>
+        </div>
+        <a class="btn-primary lb-cta" href="mailto:practice@imt-bs.eu?subject=Demande%20de%20LearnyBot%20pour%20un%20cours&body=Bonjour%20l%27%C3%A9quipe%20PracTice%2C%0A%0AJe%20souhaiterais%20un%20LearnyBot%20pour%20mon%20cours.%0A%0A-%20Intitul%C3%A9%20du%20cours%20%3A%0A-%20Enseignant%28e%29%20responsable%20%3A%0A-%20Plateforme%20%28Moodle%20EXED%2C%20Moodle%20IP%20Paris%2C%20Moodle%20IMT-BS%2C%20autre%29%20%3A%0A-%20Documents%20disponibles%20%28Word%2C%20PDF%2C%20diaporamas%2C%20H5P%E2%80%A6%29%20et%20volume%20approximatif%20%3A%0A-%20%C3%89ch%C3%A9ance%20souhait%C3%A9e%20%3A%0A%0AMerci%20%21%0A" data-href-fr="mailto:practice@imt-bs.eu?subject=Demande%20de%20LearnyBot%20pour%20un%20cours&body=Bonjour%20l%27%C3%A9quipe%20PracTice%2C%0A%0AJe%20souhaiterais%20un%20LearnyBot%20pour%20mon%20cours.%0A%0A-%20Intitul%C3%A9%20du%20cours%20%3A%0A-%20Enseignant%28e%29%20responsable%20%3A%0A-%20Plateforme%20%28Moodle%20EXED%2C%20Moodle%20IP%20Paris%2C%20Moodle%20IMT-BS%2C%20autre%29%20%3A%0A-%20Documents%20disponibles%20%28Word%2C%20PDF%2C%20diaporamas%2C%20H5P%E2%80%A6%29%20et%20volume%20approximatif%20%3A%0A-%20%C3%89ch%C3%A9ance%20souhait%C3%A9e%20%3A%0A%0AMerci%20%21%0A" data-href-en="mailto:practice@imt-bs.eu?subject=LearnyBot%20request%20for%20a%20course&body=Hello%20PracTice%20team%2C%0A%0AI%20would%20like%20a%20LearnyBot%20for%20my%20course.%0A%0A-%20Course%20title%3A%0A-%20Lead%20teacher%3A%0A-%20Platform%20%28Moodle%20EXED%2C%20Moodle%20IP%20Paris%2C%20Moodle%20IMT-BS%2C%20other%29%3A%0A-%20Available%20documents%20%28Word%2C%20PDF%2C%20slides%2C%20H5P%E2%80%A6%29%20and%20approximate%20volume%3A%0A-%20Desired%20date%3A%0A%0AThank%20you%21%0A"><span data-fr="Écrire à PracTice" data-en="Email PracTice">Écrire à PracTice</span> <span aria-hidden="true">✉</span></a>
+        <p class="lb-note"><span data-fr="Le message s'ouvre dans votre messagerie avec une trame à compléter. Vous pouvez aussi écrire directement à" data-en="The message opens in your email client with a template to fill in. You can also write directly to">Le message s'ouvre dans votre messagerie avec une trame à compléter. Vous pouvez aussi écrire directement à</span> <a href="mailto:practice@imt-bs.eu">practice@imt-bs.eu</a>.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <strong>Institut Mines-Télécom Business School</strong><br>
+      <span data-fr="Service PracTice — Ingénierie pédagogique" data-en="PracTice Team — Educational Engineering">Service PracTice — Ingénierie pédagogique</span><br>
+      9, rue Charles Fourier – 91011 Évry-Courcouronnes · <a href="mailto:practice@imt-bs.eu">practice@imt-bs.eu</a>
+    </div>
+    <div class="footer-right">
+      <span data-fr="La Grande École de l'Intelligence Digitale" data-en="The Grande École of Digital Intelligence">La Grande École de l'Intelligence Digitale</span><br>
+      <span data-fr="© 2025 IMT Business School · Tous droits réservés" data-en="© 2025 IMT Business School · All rights reserved">© 2025 IMT Business School · Tous droits réservés</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if (el.isIntersecting) { el.target.classList.add('visible'); observer.unobserve(el.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+function setLang(lang) {
+  document.querySelectorAll('[data-fr]').forEach(el => {
+    const text = el.getAttribute('data-' + lang);
+    if (text) {
+      // Preserve inner SVGs for tool-link elements
+      if (el.classList.contains('tool-link')) {
+        const svg = el.querySelector('svg');
+        el.textContent = text + ' ';
+        if (svg) el.appendChild(svg);
+      } else {
+        el.textContent = text;
+      }
+    }
+  });
+  document.querySelectorAll('iframe[data-src-fr]').forEach(el => {
+    const src = el.getAttribute('data-src-' + lang);
+    if (src && el.getAttribute('src') !== src) el.setAttribute('src', src);
+    const title = el.getAttribute('data-title-' + lang);
+    if (title) el.title = title;
+  });
+  document.querySelectorAll('[data-href-fr]').forEach(el => {
+    const href = el.getAttribute('data-href-' + lang);
+    if (href) el.setAttribute('href', href);
+  });
+  document.documentElement.lang = lang;
+  document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  localStorage.setItem('lang', lang);
+}
+
+// Restore saved language
+const saved = localStorage.getItem('lang');
+if (saved && saved !== 'fr') setLang(saved);
+</script>
+</body>
+</html>
