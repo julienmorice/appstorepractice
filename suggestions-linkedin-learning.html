@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suggestions LinkedIn Learning · PracTice — Institut Mines-Télécom Business School</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#AD1D89">
+<meta name="robots" content="noindex">
+<meta name="description" content="Indiquez le nom de votre cours : vous recevez par e-mail deux fiches de formations LinkedIn Learning adaptées, en français et en anglais. Service réservé aux personnels IMT-BS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bleu-imt:    #00B8DE;
+  --violet-imt:  #AD1D89;
+  --noir:        #000000;
+  --blanc:       #FFFFFF;
+  --gris-clair:  #F4F6F8;
+  --gris-texte:  #5A6270;
+  --border:      rgba(0,0,0,0.09);
+  --bleu-light:  rgba(0,184,222,0.08);
+  --violet-light:rgba(173,29,137,0.08);
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--gris-clair); color: var(--noir); min-height: 100vh; display: flex; flex-direction: column; }
+
+/* HEADER */
+header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.header-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 68px; display: flex; align-items: center; justify-content: space-between; }
+.logo-block { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
+.logo-sep { width: 1px; height: 28px; background: var(--border); }
+.logo-service { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; font-weight: 600; color: var(--violet-imt); letter-spacing: -0.01em; }
+.logo-service span { display: block; font-size: 0.65rem; font-weight: 400; color: var(--gris-texte); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 1px; }
+nav a { font-size: 0.85rem; color: var(--gris-texte); text-decoration: none; }
+nav a:hover { color: var(--bleu-imt); }
+
+/* PAGE */
+main { flex: 1; max-width: 1100px; width: 100%; margin: 0 auto; padding: 3.5rem 2rem 4rem; display: grid; grid-template-columns: 1fr 1.05fr; gap: 3.5rem; align-items: start; }
+.eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bleu-imt); margin-bottom: 1.3rem; padding: 0.35rem 0.8rem; background: var(--bleu-light); border-radius: 100px; }
+.eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--bleu-imt); border-radius: 50%; }
+h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.9rem, 3.4vw, 2.6rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 1.2rem; text-wrap: balance; }
+h1 em { font-style: normal; color: var(--violet-imt); }
+.intro { font-size: 1rem; line-height: 1.75; color: var(--gris-texte); max-width: 46ch; margin-bottom: 2rem; }
+.etapes { list-style: none; display: flex; flex-direction: column; gap: 1rem; counter-reset: etape; }
+.etapes li { counter-increment: etape; display: grid; grid-template-columns: 2rem 1fr; gap: 0.8rem; font-size: 0.9rem; line-height: 1.6; color: var(--gris-texte); }
+.etapes li::before { content: counter(etape); width: 2rem; height: 2rem; border-radius: 50%; background: var(--blanc); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--violet-imt); }
+.etapes strong { color: var(--noir); font-weight: 500; }
+.plus { margin-top: 2rem; padding: 1.1rem 1.3rem; background: var(--blanc); border: 1px solid var(--border); border-left: 3px solid var(--violet-imt); border-radius: 10px; font-size: 0.875rem; line-height: 1.65; color: var(--gris-texte); }
+.plus strong { color: var(--noir); font-weight: 500; }
+.plus a { color: var(--violet-imt); }
+
+/* FORMULAIRE */
+.carte { background: var(--blanc); border: 1px solid var(--border); border-radius: 18px; padding: 2rem; position: relative; overflow: hidden; }
+.carte::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--bleu-imt), var(--violet-imt)); }
+.champ { margin-bottom: 1.3rem; }
+label, legend { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.4rem; }
+.facultatif { font-weight: 400; color: var(--gris-texte); }
+.aide { font-size: 0.78rem; color: var(--gris-texte); margin-top: 0.35rem; line-height: 1.5; }
+input[type=text], input[type=email], textarea { width: 100%; font: inherit; font-size: 0.95rem; padding: 0.7rem 0.85rem; border: 1px solid rgba(0,0,0,0.2); border-radius: 8px; background: var(--blanc); color: var(--noir); }
+textarea { resize: vertical; min-height: 6.5rem; line-height: 1.5; }
+input:focus-visible, textarea:focus-visible, button:focus-visible { outline: 3px solid var(--bleu-imt); outline-offset: 2px; }
+fieldset { border: 0; }
+.langues { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.langues label { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 400; font-size: 0.9rem; margin: 0; cursor: pointer; }
+.langues input { width: 1.05rem; height: 1.05rem; accent-color: var(--violet-imt); }
+.piege { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+button[type=submit] { width: 100%; font: inherit; font-size: 0.95rem; font-weight: 500; background: var(--violet-imt); color: var(--blanc); border: 0; border-radius: 8px; padding: 0.85rem 1.2rem; cursor: pointer; transition: background 0.2s; }
+button[type=submit]:hover { background: #c42a9d; }
+button[type=submit][disabled] { background: #b9bec6; cursor: progress; }
+.retour { margin-top: 1rem; padding: 0.9rem 1rem; border-radius: 8px; font-size: 0.9rem; line-height: 1.55; }
+.retour[hidden] { display: none; }
+.retour.ok { background: #e8f5e9; color: #1b5e20; border: 1px solid rgba(46,125,50,0.3); }
+.retour.erreur { background: #fdecea; color: #8a1c13; border: 1px solid rgba(183,28,28,0.3); }
+.mention { font-size: 0.75rem; color: var(--gris-texte); line-height: 1.55; margin-top: 1.1rem; }
+
+/* FOOTER */
+footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2rem 0; }
+.footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; font-size: 0.78rem; line-height: 1.8; }
+.footer-inner strong { color: rgba(255,255,255,0.75); font-weight: 500; }
+.footer-inner a { color: rgba(255,255,255,0.55); }
+
+@media (max-width: 860px) {
+  main { grid-template-columns: 1fr; gap: 2.2rem; padding: 2.2rem 1.2rem 3rem; }
+  .header-inner { padding: 0 1.2rem; }
+  .carte { padding: 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo-block" href="index.html">
+      <img src="logo-imt-bs.webp" alt="IMT Business School" width="84" height="36">
+      <div class="logo-sep"></div>
+      <div class="logo-service">PracTice<span>Ingénierie pédagogique</span></div>
+    </a>
+    <nav><a href="index.html#outils">← Tous les outils</a></nav>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="eyebrow">LinkedIn Learning</div>
+    <h1>Des formations en ligne <em>pour votre cours</em></h1>
+    <p class="intro">Indiquez le nom de votre cours. Vous recevez par e-mail une sélection de formations LinkedIn Learning qui le complètent, prête à transmettre à vos étudiants.</p>
+    <ol class="etapes">
+      <li><span><strong>Vous décrivez votre cours</strong> : son nom, et si vous le souhaitez quelques lignes sur ses objectifs.</span></li>
+      <li><span><strong>La sélection se fait dans le catalogue de l'école</strong>, mis à jour chaque semaine, avec les modèles d'IA souverains ILaaS.</span></li>
+      <li><span><strong>Vous recevez deux fiches PDF</strong>, l'une avec les cours en français, l'autre avec les cours en anglais. Chaque ligne mène directement au cours.</span></li>
+    </ol>
+    <p class="plus"><strong>Besoin d'un parcours sur mesure ?</strong> Le service PracTice peut en construire un avec vous : écrivez à <a href="mailto:practice@imt-bs.eu">practice@imt-bs.eu</a>. Ces parcours peuvent être intégrés dans Moodle au format SCORM, pour suivre l'achèvement des activités par les étudiants.</p>
+  </section>
+
+  <section class="carte" aria-labelledby="titre-formulaire">
+    <h2 id="titre-formulaire" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:1.4rem;">Votre demande</h2>
+    <form id="demande" novalidate>
+      <div class="champ">
+        <label for="cours">Nom du cours</label>
+        <input type="text" id="cours" name="cours" required minlength="3" maxlength="150" autocomplete="off" placeholder="Management de l'innovation">
+      </div>
+      <div class="champ">
+        <label for="description">Quelques précisions <span class="facultatif">(facultatif)</span></label>
+        <textarea id="description" name="description" maxlength="1500" placeholder="Objectifs, public, outils abordés…"></textarea>
+        <p class="aide">Deux ou trois lignes suffisent et rendent la sélection nettement plus juste.</p>
+      </div>
+      <fieldset class="champ">
+        <legend>Langue des formations</legend>
+        <div class="langues">
+          <label><input type="checkbox" name="langues" value="fr" checked> Français</label>
+          <label><input type="checkbox" name="langues" value="en" checked> Anglais</label>
+        </div>
+      </fieldset>
+      <div class="champ">
+        <label for="email">Votre adresse e-mail</label>
+        <input type="email" id="email" name="email" required autocomplete="email" placeholder="prenom.nom@imt-bs.eu">
+        <p class="aide">Adresses @imt-bs.eu et @imtbs-tsp.eu uniquement.</p>
+      </div>
+      <div class="piege" aria-hidden="true">
+        <label for="site">Ne pas remplir</label>
+        <input type="text" id="site" name="site" tabindex="-1" autocomplete="off">
+      </div>
+      <button type="submit" id="envoyer">Envoyez-moi les fiches</button>
+      <div class="retour" id="retour" role="status" aria-live="polite" hidden></div>
+      <p class="mention">Les fiches sont produites automatiquement : relisez la sélection avant de la diffuser. Votre demande (cours, adresse) est conservée par le service PracTice pour le suivi du service, limité à 5 demandes par jour.</p>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <strong>Institut Mines-Télécom Business School</strong> · Service PracTice, ingénierie pédagogique · <a href="mailto:practice@imt-bs.eu">practice@imt-bs.eu</a>
+  </div>
+</footer>
+
+<script>
+const ADRESSE = 'https://n8n.srv1205184.hstgr.cloud/webhook/practice/suggestions-linkedin-learning';
+const DOMAINES = /^[^@\s]+@(imt-bs\.eu|imtbs-tsp\.eu)$/i;
+
+const formulaire = document.getElementById('demande');
+const bouton = document.getElementById('envoyer');
+const retour = document.getElementById('retour');
+
+function afficher(texte, ok) {
+  retour.textContent = texte;
+  retour.className = 'retour ' + (ok ? 'ok' : 'erreur');
+  retour.hidden = false;
+}
+
+formulaire.addEventListener('submit', async (evenement) => {
+  evenement.preventDefault();
+  const donnees = new FormData(formulaire);
+  const demande = {
+    cours: donnees.get('cours').trim(),
+    description: donnees.get('description').trim(),
+    langues: donnees.getAll('langues'),
+    email: donnees.get('email').trim(),
+    site: donnees.get('site'),
+  };
+  if (demande.cours.length < 3) return afficher('Indiquez le nom du cours (3 caractères au moins).', false);
+  if (!demande.langues.length) return afficher('Choisissez au moins une langue.', false);
+  if (!DOMAINES.test(demande.email)) return afficher('Ce service est réservé aux adresses @imt-bs.eu et @imtbs-tsp.eu.', false);
+
+  bouton.disabled = true;
+  bouton.textContent = 'Envoi en cours…';
+  try {
+    const reponse = await fetch(ADRESSE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(demande),
+    });
+    const resultat = await reponse.json();
+    afficher(resultat.message || (resultat.ok ? 'Demande enregistrée.' : 'La demande n’a pas pu être enregistrée.'), Boolean(resultat.ok));
+    if (resultat.ok) {
+      document.getElementById('cours').value = '';
+      document.getElementById('description').value = '';
+    }
+  } catch (erreur) {
+    afficher('Le service ne répond pas pour le moment. Réessayez dans quelques minutes, ou écrivez à practice@imt-bs.eu.', false);
+  } finally {
+    bouton.disabled = false;
+    bouton.textContent = 'Envoyez-moi les fiches';
+  }
+});
+</script>
+</body>
+</html>
