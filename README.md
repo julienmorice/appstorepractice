@@ -13,7 +13,7 @@ libre, avec démos vidéo.
 | `imageillustation.png` | Illustration de la section « À propos » |
 | `learnybot.html` | Page LearnyBot : démo en direct (LearnyBot du service PracTice) + bouton « Écrire à PracTice » |
 | `learnybot-mascotte.svg` | Mascotte LearnyBot (carte du catalogue et page dédiée) |
-| `sg_entreprise_mystere.webp`, `sg_bingo_sujets.webp`, `sg_dernier_badge.webp` | Vignettes 960×600 des cartes Serious games (Le dernier badge : capture de l'accueil du jeu, ajoutée le 30/10/2026) |
+| `sg_entreprise_mystere.webp`, `sg_bingo_sujets.webp` | Vignettes 960×600 des cartes Serious games (`sg_dernier_badge.webp` n'est plus affichée depuis le 10/11/2026) |
 | `suggestions-linkedin-learning.html` | Page Suggestions LinkedIn Learning : formulaire (nom du cours, précisions, langues, adresse de l'école) qui appelle le workflow n8n « LinkedIn Learning · Demande de suggestions ». Fonctionnement et identifiants : `_Projets/AnnuaireLinkedLearning/Workflow_Suggestions/README.md` |
 
 ## Déploiement
@@ -44,9 +44,11 @@ Sans vidéo de démo, la colonne de droite reçoit un `tool-video-placeholder` (
 
 ## Quand on ajoute un serious game
 
-Trois endroits de `index.html` : la carte `<a class="game-card">` dans `<div class="games-grid">` (vignette `sg_<nom>.webp` en 960×600), le compteur « N jeux · Accès libre » de la section, et l'encadré « Écosystème PracTice » (chiffre « Serious games » et ligne « Serious games · … »). La grille passe sur 3 colonnes au-delà de 1100 px, 2 en dessous, 1 sous 900 px.
+Trois endroits de `index.html` : la carte, le compteur « N jeux · Accès libre » de la section, et l'encadré « Écosystème PracTice » (chiffre « Serious games » et ligne « Serious games · … »).
 
-Jeux au 30/10/2026 : L'Entreprise Mystère, Bingo Sujets IMT-BS, Le dernier badge (escape game du Career Center, prototype réalisé avec ChatGPT Astra, https://practice-imtbs.github.io/escape-game-dernier-badge/, sources dans `_Projets/CareerCenter/PropositionMarine/EscapeGame/`).
+Depuis le 10/11/2026, la section commence par un jeu **à la une** (`<div class="game-feature">` : vidéo Médiaserveur à gauche, présentation et lien à droite, empilés sous 1100 px), suivi de la grille `<div class="games-grid">` des autres jeux en cartes `<a class="game-card">` (vignette `sg_<nom>.webp` en 960×600), sur 2 colonnes, 1 sous 900 px. Pour changer de jeu à la une, déplacer l'ancien dans la grille sous forme de carte.
+
+Jeux au 10/11/2026 : **Premier jour** à la une (jeu à la première personne du Career Center, réalisé avec Claude, https://practice-imtbs.github.io/premier-jour/, vidéo https://mediaserver.ip-paris.fr/permalink/v126d6845d7d2uey1kzr/, sources dans `_Projets/CareerCenter/PropositionMarine/PremierJour3D/`), puis L'Entreprise Mystère et Bingo Sujets IMT-BS. Le dernier badge (escape game, ChatGPT Astra, https://practice-imtbs.github.io/escape-game-dernier-badge/) a été retiré de la vitrine le 10/11/2026 ; le jeu reste en ligne.
 
 ## Mise à jour
 

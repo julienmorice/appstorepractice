@@ -124,7 +124,17 @@ nav a:hover { color: var(--bleu-imt); }
 .section-games .section-title { color: var(--blanc); }
 .section-games .section-count { color: rgba(255,255,255,0.6); white-space: nowrap; }
 .games-intro { font-size: 0.95rem; line-height: 1.7; color: rgba(255,255,255,0.7); max-width: 60ch; margin-top: 0.6rem; }
-.games-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.games-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.game-feature { display: grid; grid-template-columns: 1.35fr 1fr; gap: 0; margin-bottom: 1.5rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 18px; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; }
+.game-feature:hover { border-color: var(--violet-imt); box-shadow: 0 18px 50px rgba(173,29,137,0.25); }
+.game-feature-video { align-self: center; margin: 1.2rem 0 1.2rem 1.2rem; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.12); background: #070913; }
+.game-feature-video iframe { display: block; width: 100%; aspect-ratio: 16 / 9; height: auto; border: 0; }
+.game-feature .game-card { background: none; border: 0; border-radius: 0; }
+.game-feature .game-card:hover { transform: none; box-shadow: none; }
+.game-feature .game-body { border-top: 0; padding: 2rem 2.2rem; justify-content: center; }
+.game-feature .game-name { font-size: 1.9rem; }
+.game-feature-label { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #8EE3F5; }
+.game-feature-label::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--bleu-imt); }
 .game-card { display: flex; flex-direction: column; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
 .game-card:hover { transform: translateY(-4px); border-color: var(--violet-imt); box-shadow: 0 18px 50px rgba(173,29,137,0.25); }
 .game-card.bleu:hover { border-color: var(--bleu-imt); box-shadow: 0 18px 50px rgba(0,184,222,0.2); }
@@ -193,7 +203,8 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
 
 /* RESPONSIVE */
 @media (max-width: 1100px) {
-  .games-grid { grid-template-columns: 1fr 1fr; }
+  .game-feature { grid-template-columns: 1fr; }
+  .game-feature-video { margin: 1.2rem 1.2rem 0; }
 }
 @media (max-width: 900px) {
   .tool-row { grid-template-columns: 1fr; }
@@ -222,6 +233,9 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
   .section-games { padding: 3.5rem 0; }
   .game-visual { margin: 1rem 1rem 0; }
   .game-body { padding: 1.3rem 1.2rem 1.4rem; }
+  .game-feature-video { margin: 1rem 1rem 0; }
+  .game-feature .game-body { padding: 1.4rem 1.2rem 1.6rem; }
+  .game-feature .game-name { font-size: 1.55rem; }
   .contact-inner { flex-direction: column; align-items: flex-start; }
   .footer-inner { flex-direction: column; }
   .footer-right { text-align: left; }
@@ -293,7 +307,7 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
       <div class="hero-pill"><span class="pill-dot dot-violet"></span><span data-fr="Contrat pédagogique IA · Cadre d'usage signable" data-en="AI learning contract · Signable usage framework">Contrat pédagogique IA · Cadre d'usage signable</span></div>
       <div class="hero-pill"><span class="pill-dot dot-blue"></span><span data-fr="LearnyBot · Chatbot de cours pour Moodle" data-en="LearnyBot · Course chatbot for Moodle">LearnyBot · Chatbot de cours pour Moodle</span></div>
       <div class="hero-pill"><span class="pill-dot dot-violet"></span><span data-fr="Suggestions LinkedIn Learning · Formations pour votre cours" data-en="LinkedIn Learning suggestions · Courses for your course">Suggestions LinkedIn Learning · Formations pour votre cours</span></div>
-      <div class="hero-pill"><span class="pill-dot dot-blue"></span><span data-fr="Serious games · L'Entreprise Mystère, Le dernier badge, Bingo Sujets" data-en="Serious games · L'Entreprise Mystère, Le dernier badge, Bingo Sujets">Serious games · L'Entreprise Mystère, Le dernier badge, Bingo Sujets</span></div>
+      <div class="hero-pill"><span class="pill-dot dot-blue"></span><span data-fr="Serious games · Premier jour, L'Entreprise Mystère, Bingo Sujets" data-en="Serious games · Premier jour, L'Entreprise Mystère, Bingo Sujets">Serious games · Premier jour, L'Entreprise Mystère, Bingo Sujets</span></div>
     </div>
   </div>
 </section>
@@ -454,6 +468,34 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
       <div class="section-count" data-fr="3 jeux · Accès libre" data-en="3 games · Free access">3 jeux · Accès libre</div>
     </div>
 
+    <div class="game-feature animate">
+      <div class="game-feature-video">
+        <iframe title="Présentation de Premier jour" data-title-fr="Présentation de Premier jour" data-title-en="Premier jour overview (in French)" data-src-fr="https://mediaserver.ip-paris.fr/permalink/v126d6845d7d2uey1kzr/iframe/" data-src-en="https://mediaserver.ip-paris.fr/permalink/v126d6845d7d2uey1kzr/iframe/" src="https://mediaserver.ip-paris.fr/permalink/v126d6845d7d2uey1kzr/iframe/" allowfullscreen="allowfullscreen" allow="autoplay" loading="lazy"></iframe>
+      </div>
+      <a class="game-card" href="https://practice-imtbs.github.io/premier-jour/" target="_blank" rel="noopener">
+        <div class="game-body">
+          <span class="game-feature-label" data-fr="À la une" data-en="Featured">À la une</span>
+          <div class="game-top">
+            <span class="game-tagline" data-fr="Immersion 3D · Alternance" data-en="3D immersion · Work-study">Immersion 3D · Alternance</span>
+            <span class="badge badge-new" data-fr="Nouveau" data-en="New">Nouveau</span>
+          </div>
+          <div class="game-name">Premier jour</div>
+          <p class="game-desc" data-fr="Vivez votre premier jour d'alternance en 3D : le campus, l'entreprise d'accueil, puis l'espace d'accompagnement. Neuf personnages vous répondent de vive voix et vous posent leurs questions ; une IA répond aussi à vos questions libres. Au bout du parcours, votre badge s'active et vous repartez avec une attestation et la carte de vos contacts." data-en="Live your first work-study day in 3D: the campus, the host company, then the support area. Nine characters answer you out loud and ask you their own questions; an AI also answers your open questions. At the end, your badge is activated and you leave with a certificate and your contact map.">Vivez votre premier jour d'alternance en 3D : le campus, l'entreprise d'accueil, puis l'espace d'accompagnement. Neuf personnages vous répondent de vive voix et vous posent leurs questions ; une IA répond aussi à vos questions libres. Au bout du parcours, votre badge s'active et vous repartez avec une attestation et la carte de vos contacts.</p>
+          <ul class="game-facts">
+            <li data-fr="👤 Jeu solo" data-en="👤 Solo game">👤 Jeu solo</li>
+            <li>⏱ 20–30 min</li>
+            <li data-fr="💻 Sur ordinateur" data-en="💻 On a computer">💻 Sur ordinateur</li>
+            <li data-fr="🎧 Voix et musique" data-en="🎧 Voices and music">🎧 Voix et musique</li>
+            <li data-fr="🤖 Réalisé avec Claude" data-en="🤖 Built with Claude">🤖 Réalisé avec Claude</li>
+          </ul>
+          <div class="game-footer">
+            <span class="game-cta"><span data-fr="Commencer la journée" data-en="Start the day">Commencer la journée</span> <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
+            <span class="game-context" data-fr="Avec le Career Center" data-en="With the Career Center">Avec le Career Center</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
     <div class="games-grid">
 
       <a class="game-card animate delay-1" href="https://practice-imtbs.github.io/entreprisemysterepourlesapprentisimtbs/" target="_blank" rel="noopener">
@@ -501,32 +543,6 @@ footer { background: #0a0a0a; color: rgba(255,255,255,0.45); padding: 2.5rem 0; 
           <div class="game-footer">
             <span class="game-cta"><span data-fr="S'entraîner" data-en="Start practising">S'entraîner</span> <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
             <span class="game-context" data-fr="Version d'entraînement" data-en="Training version">Version d'entraînement</span>
-          </div>
-        </div>
-      </a>
-
-      <a class="game-card animate delay-3" href="https://practice-imtbs.github.io/escape-game-dernier-badge/" target="_blank" rel="noopener">
-        <div class="game-visual" aria-hidden="true">
-          <div class="game-visual-bar"><span></span><span></span><span></span></div>
-          <img src="sg_dernier_badge.webp" alt="" width="960" height="600" loading="lazy" decoding="async">
-        </div>
-        <div class="game-body">
-          <div class="game-top">
-            <span class="game-tagline" data-fr="Escape game · Alternance" data-en="Escape game · Work-study">Escape game · Alternance</span>
-            <span class="badge badge-new" data-fr="Prototype" data-en="Prototype">Prototype</span>
-          </div>
-          <div class="game-name">Le dernier badge</div>
-          <p class="game-desc" data-fr="Nouvel apprenti chez Nexus, vous rassemblez votre dossier de liaison, éparpillé entre le campus et l'entreprise, pour récupérer le badge enfermé dans le casier du hall. Neuf épreuves en vue isométrique : interlocuteurs, émargement, absences, contrat d'objectif, recours. Une autre version de L'Entreprise Mystère, en solo." data-en="As a new apprentice at Nexus, you piece together your liaison file, scattered between campus and company, to recover the badge locked in the lobby locker. Nine challenges in an isometric world: contacts, attendance, absences, objectives agreement, appeals. Another take on L'Entreprise Mystère, played solo.">Nouvel apprenti chez Nexus, vous rassemblez votre dossier de liaison, éparpillé entre le campus et l'entreprise, pour récupérer le badge enfermé dans le casier du hall. Neuf épreuves en vue isométrique : interlocuteurs, émargement, absences, contrat d'objectif, recours. Une autre version de L'Entreprise Mystère, en solo.</p>
-          <ul class="game-facts">
-            <li data-fr="👤 Jeu solo" data-en="👤 Solo game">👤 Jeu solo</li>
-            <li>⏱ 20–30 min</li>
-            <li data-fr="💻 Sur ordinateur" data-en="💻 On a computer">💻 Sur ordinateur</li>
-            <li data-fr="🔒 Aucune donnée collectée" data-en="🔒 No data collected">🔒 Aucune donnée collectée</li>
-            <li data-fr="🤖 Réalisé avec ChatGPT Astra" data-en="🤖 Built with ChatGPT Astra">🤖 Réalisé avec ChatGPT Astra</li>
-          </ul>
-          <div class="game-footer">
-            <span class="game-cta"><span data-fr="Ouvrir le casier" data-en="Open the locker">Ouvrir le casier</span> <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></span>
-            <span class="game-context" data-fr="Avec le Career Center" data-en="With the Career Center">Avec le Career Center</span>
           </div>
         </div>
       </a>
