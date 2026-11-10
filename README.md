@@ -40,7 +40,7 @@ Trois endroits de `index.html` sont à tenir à jour ensemble :
 2. le compteur de la section (« 6 outils · Accès libre ou sur demande ») ;
 3. l'encadré « Écosystème PracTice » en haut de page : le chiffre « Outils disponibles » et une ligne par outil.
 
-Sans vidéo de démo, la colonne de droite reçoit un `tool-video-placeholder` (« Démo vidéo à venir »), comme pour Suggestions LinkedIn Learning au 10/10/2026.
+Sans vidéo de démo, la colonne de droite reçoit un `tool-video-placeholder` (« Démo vidéo à venir »). Depuis le 10/11/2026, tous les outils ont leur vidéo ; celle de Suggestions LinkedIn Learning (trailer v2, voix de Julien, en français seulement) est https://mediaserver.ip-paris.fr/permalink/v126d68470acf2yjwqw8/, sources dans `_Projets/AnnuaireLinkedLearning/Trailer_Suggestions_v2/`.
 
 ## Quand on ajoute un serious game
 
