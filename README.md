@@ -11,6 +11,9 @@ libre, avec démos vidéo.
 | `index.html` | Page unique, autonome (HTML + CSS + JS inline), bilingue FR/EN |
 | `Logo IMT-BS RF RVB.png` | Logo officiel IMT-BS (version République Française) |
 | `imageillustation.png` | Illustration de la section « À propos » |
+| `logo-practice-store.svg` | Logo du PracTice Store (pictogramme deux bulles et livre) affiché dans l'en-tête, depuis le 23/11/2026. Sources et autres formats : `../Logo_PracTice_Store/` |
+| `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png` | Icônes du site, au même pictogramme depuis le 23/11/2026 |
+| `partage-practice-store.png` | Image de partage 1200 × 627 (balises `og:image` de `index.html`), reprise par LinkedIn et les messageries |
 | `learnybot.html` | Page LearnyBot : démo en direct (LearnyBot du service PracTice) + bouton « Écrire à PracTice » |
 | `learnybot-mascotte.svg` | Mascotte LearnyBot (carte du catalogue et page dédiée) |
 | `sg_entreprise_mystere.webp`, `sg_bingo_sujets.webp` | Vignettes 960×600 des cartes Serious games (`sg_dernier_badge.webp` n'est plus affichée depuis le 10/11/2026) |
